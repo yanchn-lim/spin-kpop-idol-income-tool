@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Spin a KPOP Idol — Income & Fusion Tool</title>
+  <style>
+    :root{--bg:#eef2f6;--card:#fff;--ink:#172033;--muted:#64748b;--line:#dbe2ea;--navy:#182235;--accent:#2563eb;--good:#067647;--warn:#b54708}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Arial,sans-serif}
+    .wrap{width:min(1180px,100%);margin:auto;padding:28px 16px 48px}h1{margin:0;font-size:clamp(1.8rem,4vw,2.7rem)}
+    h2{margin:0 0 16px;font-size:1.25rem}h3{margin:22px 0 10px;font-size:1rem}.lead{margin:5px 0 24px;color:var(--muted)}
+    .tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}.tab{border:1px solid var(--line);background:#fff;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer}
+    .tab.active{background:var(--navy);color:#fff}.panel{display:none}.panel.active{display:block}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 6px 20px #0f172a12;margin-bottom:18px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    label.field{display:grid;gap:6px;color:var(--muted);font-size:.84rem;font-weight:700}input,select{width:100%;padding:10px 11px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;color:var(--ink);font:inherit}
+    button{font:inherit}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{padding:9px 12px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;font-weight:700;cursor:pointer}.btn:hover{background:#f8fafc}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}.chip-label{cursor:pointer}.chip-label input{position:absolute;opacity:0;pointer-events:none}
+    .chip{display:inline-block;padding:6px 10px;border:2px solid transparent;border-radius:999px;background:var(--mutation-bg,#e5e7eb);color:var(--mutation-fg,#172033);font-weight:700}.chip-label input:checked+.chip{border-color:#111827;box-shadow:0 0 0 2px #fff inset}
+    .unknown{opacity:.65}.resultbox{background:var(--navy);color:#fff;border-radius:12px;padding:18px}.money{font-size:clamp(1.8rem,5vw,2.7rem);font-weight:800;color:#86efac}
+    .breakdown{margin:8px 0 0;color:#dbeafe}.status{margin:14px 0 0;color:var(--muted);font-weight:700}
+    .toolbar{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end}.modes{display:flex;gap:12px;flex-wrap:wrap}.modes label{display:inline-flex;align-items:center;white-space:nowrap}
+    .modes input[type="radio"]{width:auto;margin:0 5px 0 0;padding:0;accent-color:var(--accent)}
+    .tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px}table{width:100%;border-collapse:collapse;min-width:650px}th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}
+    th{background:var(--navy);color:#fff;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}tr:last-child td{border-bottom:0}.ready-row{background:#ecfdf3}
+    .ready{color:var(--good);font-weight:700}.missing{color:var(--warn);font-weight:700}.muted{color:var(--muted)}
+    .mutation-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}.mutation-card{border:1px solid var(--line);border-left:6px solid var(--mutation-bg,#cbd5e1);border-radius:10px;padding:12px}.mutation-card strong{display:block}.mult{font-size:1.2rem;font-weight:800}.tag{font-size:.75rem;color:var(--muted)}
+    .fusion-cell{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+    .tab:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #60a5fa;outline-offset:2px}
+    .chip-label input:focus-visible+.chip{outline:3px solid #60a5fa;outline-offset:2px}
+    .radiant{background:#fff;color:#111827;border-color:#aab4c3}.blazing{background:#ff2b2b;color:#fff}.iceborn{background:#aeebff;color:#123047}.moonlit{background:#ffd84d;color:#3b2f00}.corrupted{background:#8a2be2;color:#fff}.abyssal{background:#0b1f5b;color:#fff}.candy{background:#ff69b4;color:#fff}.crimson{background:#dc143c;color:#fff}
+    @media(max-width:760px){.grid,.fields,.toolbar{grid-template-columns:1fr}.wrap{padding:18px 10px}.card{padding:15px}.modes{display:grid;gap:7px}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Spin a KPOP Idol</h1>
+  <p class="lead">Income calculator, mutation reference, and fusion recipe tracker.</p>
+  <nav class="tabs" aria-label="Page sections">
+    <button class="tab active" data-tab="calculator">Calculator</button>
+    <button class="tab" data-tab="mutations">Mutation list</button>
+    <button class="tab" data-tab="rates">Rarity rates</button>
+    <button class="tab" data-tab="fusions">Fusion recipes</button>
+  </nav>
+
+  <section class="panel active" id="calculator">
+    <div class="grid">
+      <div class="card">
+        <h2>Card details</h2>
+        <div class="fields">
+          <label class="field">Weight (kg)<input id="weight" type="number" min="0" step=".01" value="100"></label>
+          <label class="field">Rarity<select id="rarity"></select></label>
+          <label class="field">Grade<select id="grade"></select></label>
+        </div>
+        <h3>Mutations</h3>
+        <p class="muted">Select every mutation on the card. Unknown multipliers cannot be calculated.</p>
+        <div class="chips" id="calcMutations"></div>
+        <div class="actions" style="margin-top:14px"><button class="btn" id="clearCalc">Clear mutations</button></div>
+      </div>
+      <div class="card">
+        <h2>Estimated income</h2>
+        <div class="resultbox">
+          <div class="money" id="finalMoney">$25,000.00/s</div>
+          <p class="breakdown" id="breakdown"></p>
+        </div>
+        <h3>Stacking rule</h3>
+        <p class="muted">The highest mutation is used in full. Each lower mutation adds half as much as the previous position.</p>
+        <p><code>highest + (second−1)/2 + (third−1)/4 + …</code></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="mutations">
+    <div class="card">
+      <div class="toolbar">
+        <label class="field">Search mutation<input id="mutationSearch" type="search" placeholder="Name or multiplier"></label>
+        <div class="modes" id="mutationModes">
+          <label><input type="radio" name="mutationMode" value="all" checked> All</label>
+          <label><input type="radio" name="mutationMode" value="confirmed"> Confirmed</label>
+          <label><input type="radio" name="mutationMode" value="needed"> Needs testing</label>
+        </div>
+      </div>
+      <p class="status" id="mutationStatus"></p>
+      <div class="mutation-grid" id="mutationList"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="rates">
+    <div class="card">
+      <label class="field">Search rarity
+        <input id="raritySearch" type="search" placeholder="Rarity or rate">
+      </label>
+      <p class="status" id="rarityStatus"></p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Rarity</th><th>Base rate</th><th>Status</th></tr></thead>
+          <tbody id="rarityRows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="fusions">
+    <div class="card">
+      <h2>Your mutations</h2>
+      <p class="muted">Check what you own, then filter the recipes.</p>
+      <div class="chips" id="ownedMutations"></div>
+      <div class="actions" style="margin-top:14px">
+        <button class="btn" id="selectBase">Select all base</button><button class="btn" id="clearOwned">Clear</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="toolbar">
+        <label class="field">Search recipes<input id="recipeSearch" type="search" placeholder="Ingredient or result"></label>
+        <div class="modes" id="recipeModes">
+          <label><input type="radio" name="recipeMode" value="all" checked> All</label>
+          <label><input type="radio" name="recipeMode" value="related"> Uses something I have</label>
+          <label><input type="radio" name="recipeMode" value="available"> Can make now</label>
+        </div>
+      </div>
+      <p class="status" id="recipeStatus"></p>
+      <div class="tablewrap"><table><thead><tr><th>Ingredients</th><th>Result</th><th>Availability</th></tr></thead><tbody id="recipeRows"></tbody></table></div>
+    </div>
+  </section>
+</main>
+<script>
+const mutations=[
+  {name:"Normal / Base",value:1,status:"confirmed"},{name:"Radiant",value:1.25,status:"confirmed",base:true},{name:"Sunburst",value:1.35,status:"confirmed"},
+  {name:"Blazing",value:1.4,status:"confirmed",base:true},{name:"Corrupted",value:1.65,status:"confirmed",base:true},{name:"Iceborn",value:1.8,status:"confirmed",base:true},
+  {name:"Moonlit",value:2,status:"confirmed",base:true},{name:"Aurora",value:2,status:"confirmed"},{name:"Void",value:2.1,status:"confirmed"},
+  {name:"Summer",value:2.25,status:"confirmed"},{name:"Abyssal",value:2.3,status:"confirmed",base:true},{name:"Candy",value:2.6,status:"confirmed",base:true},
+  {name:"Cherished",value:2.9,status:"confirmed"},{name:"Crimson",value:3,status:"confirmed",base:true},{name:"Glitched",value:3.1,status:"confirmed"},
+  {name:"Velvet",value:3.2,status:"confirmed"},{name:"Pixelated",value:3.4,status:"confirmed"},{name:"Blossom",value:4,status:"confirmed"},
+  {name:"Eclipse",value:3,status:"confirmed"},{name:"Cosmic",value:3.8,status:"confirmed"},{name:"Hollow",value:4.4,status:"needed"},{name:"Starlight",value:5,status:"confirmed"}
+];
+const rarities=[
+  ["Common",.75],["Uncommon",1.25],["Rare",1.8],["Epic",9],["Legendary",11],["Mythic",12],["Ethereal",14],["Secret",17],
+  ["Oblivion",24],["Eternal",28],["Transcendent",34],["Infinity",250],["Apex",460],["Event",475],["Fansign",480],["Vacation",490],
+  ["Concept",500],["Performance",520],["Iconic",545],["Fashion",555],["Harmony",575],["Munch",595],["Cutesy",610],["Pets",650],["Exclusive",675],
+  ["Formal",null]
+];
+const grades=[["F",1],["E",1.1],["D",1.2],["C",1.3],["B",1.4],["A",1.5],["S",1.6],["X",1.8],["SS",1.9],["XX",2]];
+const recipes=[
+  [["Radiant","Blazing"],"Sunburst"],[["Iceborn","Moonlit"],"Aurora"],[["Corrupted","Abyssal"],"Void"],
+  [["Candy","Crimson"],"Velvet"],[["Abyssal","Corrupted"],"Glitched"],[["Candy","Iceborn"],"Cherished"],
+  [["Radiant","Blazing","Corrupted"],"Eclipse"],[["Iceborn","Moonlit","Corrupted"],"Pixelated"],
+  [["Radiant","Moonlit","Crimson"],"Blossom"],[["Abyssal","Blazing","Moonlit"],"Cosmic"],
+  [["Void","Crimson","Glitched"],"Hollow"],[["Moonlit","Blossom","Radiant"],"Starlight"]
+];
+const colors={Radiant:"radiant",Blazing:"blazing",Iceborn:"iceborn",Moonlit:"moonlit",Corrupted:"corrupted",Abyssal:"abyssal",Candy:"candy",Crimson:"crimson"};
+const mutationColors={
+  "Normal / Base":["#e5e7eb","#172033"],Radiant:["#ffffff","#111827"],Sunburst:["#f59e0b","#2b1700"],
+  Blazing:["#ef2b2d","#ffffff"],Corrupted:["#7c3aed","#ffffff"],Iceborn:["#9bdcf5","#123047"],
+  Moonlit:["#f5d547","#3b2f00"],Aurora:["#6ee7c7","#073b35"],Void:["#4c1d95","#ffffff"],
+  Summer:["#eab83e","#3a2500"],Abyssal:["#173b7a","#ffffff"],Candy:["#ec72cf","#3b1232"],
+  Cherished:["#d89aac","#32131d"],Crimson:["#a9152a","#ffffff"],Glitched:["#62b36f","#102b14"],
+  Velvet:["#cf3f78","#ffffff"],Pixelated:["#7567c9","#ffffff"],Blossom:["#dda4d4","#35142f"],
+  Eclipse:["#d66f32","#2c1205"],Cosmic:["#4296ad","#071f29"],Hollow:["#4b445c","#ffffff"],
+  Starlight:["#f1c75b","#332500"]
+};
+const $=id=>document.getElementById(id), money=n=>"$"+n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})+"/s";
+function mutationStyle(name){const [background,color]=mutationColors[name]||["#e5e7eb","#172033"];return `--mutation-bg:${background};--mutation-fg:${color}`}
+function chip(name,inputName){return `<label class="chip-label"><input type="checkbox" name="${inputName}" value="${name}"><span class="chip ${colors[name]||""}" style="${mutationStyle(name)}">${name}</span></label>`}
+
+rarities.forEach(([n,v])=>$("rarity").add(new Option(v==null?`${n} — unknown`:`${n} — $${v}/kg`,n)));
+$("rarity").value="Infinity";grades.forEach(([n,v])=>$("grade").add(new Option(`${n} — ${v.toFixed(2)}×`,n)));$("grade").value="F";
+$("calcMutations").innerHTML=mutations.filter(m=>m.name!=="Normal / Base").map(m=>chip(m.name,"calcMutation")).join("");
+$("ownedMutations").innerHTML=[...new Set(recipes.flatMap(r=>[...r[0],r[1]]))].map(n=>chip(n,"ownedMutation")).join("");
+
+function calculate(){
+  const weight=Number($("weight").value), rarity=rarities.find(r=>r[0]===$("rarity").value), grade=grades.find(g=>g[0]===$("grade").value);
+  const names=[...document.querySelectorAll('[name="calcMutation"]:checked')].map(x=>x.value);
+  const selected=names.map(n=>mutations.find(m=>m.name===n)).sort((a,b)=>(b.value??-1)-(a.value??-1));
+  const unknown=selected.filter(m=>m.value==null);
+  if(!Number.isFinite(weight)||weight<=0){showCalculatorError("Enter a weight greater than zero.");return}
+  if(rarity[1]==null){showCalculatorError(`${rarity[0]} does not have a confirmed $/kg rate yet.`);return}
+  if(unknown.length){showCalculatorError(`Needs testing: ${unknown.map(item=>item.name).join(", ")}`);return}
+  const combined=selected.length?selected.reduce((t,m,i)=>i? t+(m.value-1)/(2**i):m.value,0):1;
+  const final=weight*rarity[1]*grade[1]*combined;
+  $("finalMoney").textContent=money(final);
+  $("breakdown").textContent=`${weight} kg × $${rarity[1]}/kg × ${grade[1].toFixed(2)} grade × ${combined.toFixed(5)} mutations`;
+}
+function showCalculatorError(message){$("finalMoney").textContent="Cannot calculate";$("breakdown").textContent=message}
+["weight","rarity","grade"].forEach(id=>$(id).addEventListener("input",calculate));
+$("calcMutations").addEventListener("change",calculate);$("clearCalc").onclick=()=>{document.querySelectorAll('[name="calcMutation"]').forEach(x=>x.checked=false);calculate()};
+
+function renderMutationList(){
+  const q=$("mutationSearch").value.trim().toLowerCase(),mode=document.querySelector('[name="mutationMode"]:checked').value;
+  const list=mutations.filter(m=>(mode==="all"||m.status===mode)&&(!q||m.name.toLowerCase().includes(q)||(m.value!=null&&String(m.value).includes(q))));
+  $("mutationList").innerHTML=list.map(m=>`<article class="mutation-card ${m.value==null?"unknown":""}" style="${mutationStyle(m.name)}"><strong>${m.name}</strong><span class="mult">${m.value==null?"Unknown":m.value.toFixed(2)+"×"}</span><div class="tag">${m.base?"Base mutation · ":""}${m.status==="confirmed"?"Confirmed":"Needs testing"}</div></article>`).join("");
+  $("mutationStatus").textContent=`Showing ${list.length} of ${mutations.length} mutations`;
+}
+$("mutationSearch").addEventListener("input",renderMutationList);$("mutationModes").addEventListener("change",renderMutationList);
+
+function renderRarities(){
+  const q=$("raritySearch").value.trim().toLowerCase();
+  const list=rarities.filter(([name,rate])=>!q||name.toLowerCase().includes(q)||(rate!=null&&String(rate).includes(q)));
+  $("rarityRows").innerHTML=list.map(([name,rate])=>`<tr><td><strong>${name}</strong></td><td>${rate==null?"—":`<strong>$${rate.toFixed(2)}/kg</strong>`}</td><td class="${rate==null?"missing":"ready"}">${rate==null?"Needed":"Confirmed"}</td></tr>`).join("");
+  $("rarityStatus").textContent=`Showing ${list.length} of ${rarities.length} rarities`;
+}
+$("raritySearch").addEventListener("input",renderRarities);
+
+function badge(n){return `<span class="chip ${colors[n]||""}" style="${mutationStyle(n)}">${n}</span>`}
+function renderRecipes(){
+  const owned=new Set([...document.querySelectorAll('[name="ownedMutation"]:checked')].map(x=>x.value));
+  const q=$("recipeSearch").value.trim().toLowerCase(),mode=document.querySelector('[name="recipeMode"]:checked').value;
+  const shown=recipes.filter(([ings,result])=>{
+    const search=!q||[...ings,result].join(" ").toLowerCase().includes(q);
+    const related=ings.some(x=>owned.has(x)),available=ings.every(x=>owned.has(x));
+    return search&&(mode==="all"||mode==="related"&&related||mode==="available"&&available);
+  });
+  let readyCount=0;
+  $("recipeRows").innerHTML=shown.map(([ings,result])=>{
+    const missing=ings.filter(x=>!owned.has(x)),ready=owned.size&&missing.length===0;
+    if(ready)readyCount++;
+    const availability=!owned.size?'<span class="muted">Not checked</span>':ready?'<span class="ready">Ready</span>':`<span class="missing">Missing: ${missing.join(", ")}</span>`;
+    return `<tr class="${ready?"ready-row":""}"><td><div class="fusion-cell">${ings.map(badge).join(' <strong class="muted">+</strong> ')}</div></td><td><strong>${result}</strong></td><td>${availability}</td></tr>`;
+  }).join("");
+  $("recipeStatus").textContent=`Showing ${shown.length} of ${recipes.length} recipes${owned.size?` — ${readyCount} ready`:""}`;
+}
+$("ownedMutations").addEventListener("change",renderRecipes);$("recipeSearch").addEventListener("input",renderRecipes);$("recipeModes").addEventListener("change",renderRecipes);
+$("selectBase").onclick=()=>{document.querySelectorAll('[name="ownedMutation"]').forEach(x=>x.checked=mutations.some(m=>m.name===x.value&&m.base));document.querySelector('[name="recipeMode"][value="available"]').checked=true;renderRecipes()};
+$("clearOwned").onclick=()=>{document.querySelectorAll('[name="ownedMutation"]').forEach(x=>x.checked=false);renderRecipes()};
+document.querySelectorAll(".tab").forEach(tabButton=>tabButton.setAttribute("aria-selected",String(tabButton.classList.contains("active"))));
+document.querySelector(".tabs").addEventListener("click",e=>{if(!e.target.dataset.tab)return;document.querySelectorAll(".tab").forEach(x=>{x.classList.remove("active");x.setAttribute("aria-selected","false")});document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));e.target.classList.add("active");e.target.setAttribute("aria-selected","true");$(e.target.dataset.tab).classList.add("active")});
+calculate();renderMutationList();renderRarities();renderRecipes();
+</script>
+</body>
+</html>
