@@ -19,8 +19,9 @@
     .chip{display:inline-block;padding:6px 10px;border:2px solid transparent;border-radius:999px;background:var(--mutation-bg,#e5e7eb);color:var(--mutation-fg,#172033);font-weight:700}.chip-label input:checked+.chip{border-color:#111827;box-shadow:0 0 0 2px #fff inset}
     .unknown{opacity:.65}.resultbox{background:var(--navy);color:#fff;border-radius:12px;padding:18px}.money{font-size:clamp(1.8rem,5vw,2.7rem);font-weight:800;color:#86efac}
     .breakdown{margin:8px 0 0;color:#dbeafe}.status{margin:14px 0 0;color:var(--muted);font-weight:700}
-    .toolbar{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end}.modes{display:flex;gap:12px;flex-wrap:wrap}.modes label{display:inline-flex;align-items:center;white-space:nowrap}
+    .toolbar{display:grid;grid-template-columns:minmax(220px,1fr) minmax(340px,auto);gap:18px;align-items:end}.modes{display:flex;gap:8px;flex-wrap:wrap}.modes label{display:inline-flex;align-items:center;white-space:nowrap;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:#f8fafc;font-weight:700;cursor:pointer}
     .modes input[type="radio"]{width:auto;margin:0 5px 0 0;padding:0;accent-color:var(--accent)}
+    .section-head{display:flex;justify-content:space-between;align-items:start;gap:16px;margin-bottom:14px}.section-head h2,.section-head p{margin-bottom:0}.section-head .actions{justify-content:flex-end}
     .tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px}table{width:100%;border-collapse:collapse;min-width:650px}th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}
     th{background:var(--navy);color:#fff;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}tr:last-child td{border-bottom:0}.ready-row{background:#ecfdf3}
     .ready{color:var(--good);font-weight:700}.missing{color:var(--warn);font-weight:700}.muted{color:var(--muted)}
@@ -29,7 +30,7 @@
     .tab:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #60a5fa;outline-offset:2px}
     .chip-label input:focus-visible+.chip{outline:3px solid #60a5fa;outline-offset:2px}
     .radiant{background:#fff;color:#111827;border-color:#aab4c3}.blazing{background:#ff2b2b;color:#fff}.iceborn{background:#aeebff;color:#123047}.moonlit{background:#ffd84d;color:#3b2f00}.corrupted{background:#8a2be2;color:#fff}.abyssal{background:#0b1f5b;color:#fff}.candy{background:#ff69b4;color:#fff}.crimson{background:#dc143c;color:#fff}
-    @media(max-width:760px){.grid,.fields,.toolbar{grid-template-columns:1fr}.wrap{padding:18px 10px}.card{padding:15px}.modes{display:grid;gap:7px}}
+    @media(max-width:760px){.grid,.fields,.toolbar{grid-template-columns:1fr}.wrap{padding:18px 10px}.card{padding:15px}.modes{display:grid;gap:7px}.section-head{display:grid}.section-head .actions{justify-content:flex-start}}
   </style>
 </head>
 <body>
@@ -119,21 +120,19 @@
       <p class="muted">No step exceeds four slots. Starlight + Hollow + Blossom + Cosmic is stronger on paper, but it cannot be crafted on one card under this limit.</p>
     </div>
     <div class="card">
-      <h2>Your mutations</h2>
-      <p class="muted">Check what you own, then filter the recipes.</p>
-      <div class="chips" id="ownedMutations"></div>
-      <div class="actions" style="margin-top:14px">
-        <button class="btn" id="selectBase">Select all base</button><button class="btn" id="clearOwned">Clear</button>
+      <div class="section-head">
+        <div><h2>Your mutations</h2><p class="muted">Check what you own, then filter the recipes.</p></div>
+        <div class="actions"><button class="btn" id="selectBase">Select all base</button><button class="btn" id="clearOwned">Clear mutations</button></div>
       </div>
-    </div>
-    <div class="card">
+      <div class="chips" id="ownedMutations"></div>
+      <h3>Filter recipes</h3>
       <div class="toolbar">
         <label class="field">Search recipes<input id="recipeSearch" type="search" placeholder="Ingredient or result"></label>
-        <div class="modes" id="recipeModes">
-          <label><input type="radio" name="recipeMode" value="all" checked> All</label>
-          <label><input type="radio" name="recipeMode" value="related"> Uses something I have</label>
-          <label><input type="radio" name="recipeMode" value="available"> Can make now</label>
-        </div>
+        <div><div class="tag" style="margin-bottom:6px">Show recipes</div><div class="modes" id="recipeModes">
+          <label><input type="radio" name="recipeMode" value="all" checked> All recipes</label>
+          <label><input type="radio" name="recipeMode" value="related"> Uses owned</label>
+          <label><input type="radio" name="recipeMode" value="available"> Craftable now</label>
+        </div></div>
       </div>
       <p class="status" id="recipeStatus"></p>
       <div class="tablewrap"><table><thead><tr><th>Ingredients</th><th>Result</th><th>Availability</th></tr></thead><tbody id="recipeRows"></tbody></table></div>
@@ -241,7 +240,7 @@ function renderRecipes(){
     const availability=!owned.size?'<span class="muted">Not checked</span>':ready?'<span class="ready">Ready</span>':`<span class="missing">Missing: ${missing.join(", ")}</span>`;
     return `<tr class="${ready?"ready-row":""}"><td><div class="fusion-cell">${ings.map(badge).join(' <strong class="muted">+</strong> ')}</div></td><td><strong>${result}</strong></td><td>${availability}</td></tr>`;
   }).join("");
-  $("recipeStatus").textContent=`Showing ${shown.length} of ${recipes.length} recipes${owned.size?` — ${readyCount} ready`:""}`;
+  $("recipeStatus").textContent=`${shown.length} of ${recipes.length} recipes${owned.size?` · ${readyCount} craftable`:""}`;
 }
 $("ownedMutations").addEventListener("change",renderRecipes);$("recipeSearch").addEventListener("input",renderRecipes);$("recipeModes").addEventListener("change",renderRecipes);
 $("selectBase").onclick=()=>{document.querySelectorAll('[name="ownedMutation"]').forEach(x=>x.checked=mutations.some(m=>m.name===x.value&&m.base));document.querySelector('[name="recipeMode"][value="available"]').checked=true;renderRecipes()};
