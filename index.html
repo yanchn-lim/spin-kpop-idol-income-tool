@@ -27,7 +27,7 @@
     .ready{color:var(--good);font-weight:700}.missing{color:var(--warn);font-weight:700}.muted{color:var(--muted)}
     .mutation-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}.mutation-card{border:1px solid var(--line);border-left:6px solid var(--mutation-bg,#cbd5e1);border-radius:10px;padding:12px}.mutation-card strong{display:block}.mult{font-size:1.2rem;font-weight:800}.tag{font-size:.75rem;color:var(--muted)}
     .fusion-cell{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
-    .pack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}.pack-result{border:1px solid var(--line);border-radius:10px;padding:14px}.pack-result strong{display:block;font-size:1.05rem}.pack-meta{color:var(--muted);margin-top:4px}.pack-name{display:inline-block;margin-top:10px;padding:4px 8px;border-radius:999px;font-weight:700}.pack-name.common{background:#e2e8f0;color:#334155}.pack-name.uncommon{background:#dcfce7;color:#166534}.pack-name.rare{background:#dbeafe;color:#1d4ed8}.pack-name.epic{background:#f3e8ff;color:#7e22ce}.pack-name.legendary{background:#fef3c7;color:#a16207}.pack-name.mythic{background:#ffe4e6;color:#be123c}.pack-name.ethereal{background:#cffafe;color:#0e7490}.pack-name.secret{background:#ede9fe;color:#6d28d9}.pack-name.oblivion{background:#e0e7ff;color:#3730a3}.pack-name.eternal{background:#dbeafe;color:#1e3a8a}.pack-name.transcendent{background:#ccfbf1;color:#0f766e}
+    .pack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}.pack-result{border:1px solid var(--line);border-radius:10px;padding:14px}.pack-result strong{display:block;font-size:1.05rem}.pack-meta{color:var(--muted);margin-top:4px}.pack-name{display:inline-block;margin-top:10px;padding:4px 8px;border-radius:999px;font-weight:700}.pack-name.common{background:#e2e8f0;color:#334155}.pack-name.uncommon{background:#dcfce7;color:#166534}.pack-name.rare{background:#dbeafe;color:#1d4ed8}.pack-name.epic{background:#f3e8ff;color:#7e22ce}.pack-name.legendary{background:#fef3c7;color:#a16207}.pack-name.mythic{background:#ffe4e6;color:#be123c}.pack-name.ethereal{background:#cffafe;color:#0e7490}.pack-name.secret{background:#ede9fe;color:#6d28d9}.pack-name.oblivion{background:#e0e7ff;color:#3730a3}.pack-name.eternal{background:#dbeafe;color:#1e3a8a}.pack-name.transcendent{background:#ccfbf1;color:#0f766e}.pack-name.infinity{background:#111827;color:#f9fafb}.pack-name.apex{background:#ffedd5;color:#c2410c}.pack-name.fansign{background:#fce7f3;color:#be185d}.pack-name.vacation{background:#dbeafe;color:#0369a1}
     .tab:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #60a5fa;outline-offset:2px}
     .chip-label input:focus-visible+.chip{outline:3px solid #60a5fa;outline-offset:2px}
     .radiant{background:#fff;color:#111827;border-color:#aab4c3}.blazing{background:#ff2b2b;color:#fff}.iceborn{background:#aeebff;color:#123047}.moonlit{background:#ffd84d;color:#3b2f00}.corrupted{background:#8a2be2;color:#fff}.abyssal{background:#0b1f5b;color:#fff}.candy{background:#ff69b4;color:#fff}.crimson{background:#dc143c;color:#fff}
@@ -106,7 +106,7 @@
   <section class="panel" id="packs">
     <div class="card">
       <h2>Pack search</h2>
-      <p class="muted">Search by idol or group name across the recorded Common, Uncommon, Rare, Epic, Legendary, Mythic, Ethereal, Secret, Oblivion, Eternal, and Transcendent packs.</p>
+      <p class="muted">Search by idol or group name across the recorded Common, Uncommon, Rare, Epic, Legendary, Mythic, Ethereal, Secret, Oblivion, Eternal, Transcendent, Infinity, Apex, Fansign, and Vacation packs.</p>
       <label class="field">Search idol or group<input id="packSearch" type="search" placeholder="Idol or group name"></label>
       <p class="status" id="packStatus"></p>
       <div class="pack-grid" id="packResults"></div>
@@ -378,7 +378,98 @@ const packPool=[
   {pack:"Transcendent",idol:"IU",group:"Solo",rarity:"Transcendent"},
   {pack:"Transcendent",idol:"Minji",group:"NewJeans",rarity:"Transcendent"},
   {pack:"Transcendent",idol:"Giselle",group:"aespa",rarity:"Transcendent"},
-  {pack:"Transcendent",idol:"HyunJin",group:"LOONA",rarity:"Transcendent"}
+  {pack:"Transcendent",idol:"HyunJin",group:"LOONA",rarity:"Transcendent"},
+  {pack:"Infinity",idol:"Taki",group:"&TEAM",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Yeji",group:"ITZY",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Sana",group:"TWICE",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Saja Boys",group:"Saja Boys",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Yena",group:"IZ*ONE",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Winter",group:"aespa",rarity:"Infinity"},
+  {pack:"Infinity",idol:"ITZY",group:"ITZY",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Ella",group:"MEOVV",rarity:"Infinity"},
+  {pack:"Infinity",idol:"HUNTR/X",group:"HUNTR/X",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Jaehyun NCT",group:"NCT",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Joy",group:"Red Velvet",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Stella",group:"Hearts2Hearts",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Hoshi",group:"SEVENTEEN",rarity:"Infinity"},
+  {pack:"Infinity",idol:"D.O.",group:"EXO",rarity:"Infinity"},
+  {pack:"Infinity",idol:"BLACKPINK",group:"BLACKPINK",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Yunjin",group:"LE SSERAFIM",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Mingi",group:"ATEEZ",rarity:"Infinity"},
+  {pack:"Infinity",idol:"ILLIT",group:"ILLIT",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Bang Chan",group:"Stray Kids",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Karina X Giselle",group:"aespa",rarity:"Infinity"},
+  {pack:"Infinity",idol:"CORTIS",group:"CORTIS",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Enhypen",group:"ENHYPEN",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Taehyun X Hueningkai",group:"TXT",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Stray Kids",group:"Stray Kids",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Sakura X Chaewon",group:"LE SSERAFIM",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Heeseung",group:"ENHYPEN",rarity:"Infinity"},
+  {pack:"Infinity",idol:"Hanni",group:"NewJeans",rarity:"Infinity"},
+  {pack:"Infinity",idol:"J-hope",group:"BTS",rarity:"Infinity"},
+  {pack:"Apex",idol:"TWICE",group:"TWICE",rarity:"Apex"},
+  {pack:"Apex",idol:"San",group:"ATEEZ",rarity:"Apex"},
+  {pack:"Apex",idol:"Ian",group:"Hearts2Hearts",rarity:"Apex"},
+  {pack:"Apex",idol:"Myeon",group:"(G)I-DLE",rarity:"Apex"},
+  {pack:"Apex",idol:"Felix",group:"Stray Kids",rarity:"Apex"},
+  {pack:"Apex",idol:"Yeonjun",group:"TXT",rarity:"Apex"},
+  {pack:"Apex",idol:"Jiwoo H2H",group:"Hearts2Hearts",rarity:"Apex"},
+  {pack:"Apex",idol:"Karina",group:"aespa",rarity:"Apex"},
+  {pack:"Apex",idol:"BTS",group:"BTS",rarity:"Apex"},
+  {pack:"Apex",idol:"Haerin",group:"NewJeans",rarity:"Apex"},
+  {pack:"Apex",idol:"Asa",group:"BABYMONSTER",rarity:"Apex"},
+  {pack:"Apex",idol:"Wonyoung X Liz",group:"IVE",rarity:"Apex"},
+  {pack:"Apex",idol:"Sunghoon X Niki",group:"ENHYPEN",rarity:"Apex"},
+  {pack:"Apex",idol:"Anna",group:"MEOVV",rarity:"Apex"},
+  {pack:"Apex",idol:"Yuna",group:"ITZY",rarity:"Apex"},
+  {pack:"Apex",idol:"Sunghoon",group:"ENHYPEN",rarity:"Apex"},
+  {pack:"Apex",idol:"Chaewon",group:"LE SSERAFIM",rarity:"Apex"},
+  {pack:"Apex",idol:"TXT",group:"TXT",rarity:"Apex"},
+  {pack:"Apex",idol:"NewJeans",group:"NewJeans",rarity:"Apex"},
+  {pack:"Apex",idol:"Ive",group:"IVE",rarity:"Apex"},
+  {pack:"Apex",idol:"Wonyoung",group:"IVE",rarity:"Apex"},
+  {pack:"Apex",idol:"Sullyoon",group:"NMIXX",rarity:"Apex"},
+  {pack:"Apex",idol:"Le Sserafim",group:"LE SSERAFIM",rarity:"Apex"},
+  {pack:"Apex",idol:"ATEEZ",group:"ATEEZ",rarity:"Apex"},
+  {pack:"Apex",idol:"Hanni X Danielle",group:"NewJeans",rarity:"Apex"},
+  {pack:"Apex",idol:"G-Dragon",group:"BIGBANG",rarity:"Apex"},
+  {pack:"Apex",idol:"Jungkook",group:"BTS",rarity:"Apex"},
+  {pack:"Fansign",idol:"Fansign Giselle",group:"aespa",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Fuma",group:"&TEAM",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Anna",group:"MEOVV",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Martin",group:"CORTIS",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Haerin",group:"NewJeans",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Jungkook",group:"BTS",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Wonbin",group:"RIIZE",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Keeho",group:"P1Harmony",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Sakura",group:"LE SSERAFIM",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Yuna",group:"ITZY",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign IN",group:"Stray Kids",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Hoshi",group:"SEVENTEEN",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Jay",group:"ENHYPEN",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Wonyoung",group:"IVE",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Yunho",group:"ATEEZ",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Hueningkai",group:"TXT",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Moka",group:"ILLIT",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Ricky",group:"ZEROBASEONE",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Haum",group:"KiiiKiii",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Sullyoon",group:"NMIXX",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Jiwoo",group:"Hearts2Hearts",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Tzuyu",group:"TWICE",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Ahyeon",group:"BABYMONSTER",rarity:"Fansign"},
+  {pack:"Fansign",idol:"Fansign Ian",group:"Hearts2Hearts",rarity:"Fansign"},
+  {pack:"Vacation",idol:"London Sungchan",group:"RIIZE",rarity:"Vacation"},
+  {pack:"Vacation",idol:"French Ella",group:"MEOVV",rarity:"Vacation"},
+  {pack:"Vacation",idol:"Beach Moka",group:"ILLIT",rarity:"Vacation"},
+  {pack:"Vacation",idol:"Fluffy K",group:"&TEAM",rarity:"Vacation"},
+  {pack:"Vacation",idol:"Frosty Kazuha",group:"LE SSERAFIM",rarity:"Vacation"},
+  {pack:"Vacation",idol:"Beach Jiung",group:"P1Harmony",rarity:"Vacation"},
+  {pack:"Vacation",idol:"Sunset Evan",group:"ENHYPEN",rarity:"Vacation"},
+  {pack:"Vacation",idol:"Australian Haum",group:"KiiiKiii",rarity:"Vacation"},
+  {pack:"Vacation",idol:"California Ana",group:"Hearts2Hearts",rarity:"Vacation"},
+  {pack:"Vacation",idol:"Summer Stella X Yuha",group:"Hearts2Hearts",rarity:"Vacation"},
+  {pack:"Vacation",idol:"Lake Jungwon",group:"ENHYPEN",rarity:"Vacation"},
+  {pack:"Vacation",idol:"Desert Winwin",group:"NCT / WayV",rarity:"Vacation"}
 ];
 const grades=[["F",1],["E",1.1],["D",1.2],["C",1.3],["B",1.4],["A",1.5],["S",1.6],["X",1.8],["SS",1.9],["XX",2]];
 const recipes=[
@@ -452,7 +543,7 @@ function renderPacks(){
   $("packStatus").textContent=`Showing ${list.length} of ${packPool.length} cards`;
 }
 $("packSearch").addEventListener("input",renderPacks);
-const packClassNames={Common:"common",Uncommon:"uncommon",Rare:"rare",Epic:"epic",Legendary:"legendary",Mythic:"mythic",Ethereal:"ethereal",Secret:"secret",Oblivion:"oblivion",Eternal:"eternal",Transcendent:"transcendent"};
+const packClassNames={Common:"common",Uncommon:"uncommon",Rare:"rare",Epic:"epic",Legendary:"legendary",Mythic:"mythic",Ethereal:"ethereal",Secret:"secret",Oblivion:"oblivion",Eternal:"eternal",Transcendent:"transcendent",Infinity:"infinity",Apex:"apex",Fansign:"fansign",Vacation:"vacation"};
 function packClass(name){return packClassNames[name]||""}
 
 function badge(n){return `<span class="chip ${colors[n]||""}" style="${mutationStyle(n)}">${n}</span>`}
