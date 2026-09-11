@@ -256,7 +256,7 @@ const packPool=[
   {pack:"Legendary",idol:"Jo Yuri",group:"IZ*ONE",rarity:"Legendary"},
   {pack:"Legendary",idol:"Jisung",group:"NCT DREAM",rarity:"Legendary"},
   {pack:"Legendary",idol:"Sungchan",group:"RIIZE",rarity:"Legendary"},
-  {pack:"Legendary",idol:"Martin",group:"&TEAM",rarity:"Legendary"},
+  {pack:"Legendary",idol:"Martin",group:"CORTIS",rarity:"Legendary"},
   {pack:"Legendary",idol:"A-na",group:"Hearts2Hearts",rarity:"Legendary"},
   {pack:"Legendary",idol:"Hoony",group:"WINNER",rarity:"Legendary"},
   {pack:"Legendary",idol:"Yunah",group:"ILLIT",rarity:"Legendary"},
@@ -633,7 +633,7 @@ const packPool=[
   {pack:"Mirror",idol:"Mirror Hinata",group:"XG",rarity:"Mirror"},
   {pack:"Mirror",idol:"Mirror Keeho",group:"P1Harmony",rarity:"Mirror"},
   {pack:"Mirror",idol:"Mirror Gaeul",group:"IVE",rarity:"Mirror"},
-  {pack:"Mirror",idol:"Mirror Juhoon",group:"CLOSE YOUR EYES",rarity:"Mirror"},
+  {pack:"Mirror",idol:"Mirror Juhoon",group:"CORTIS",rarity:"Mirror"},
   {pack:"Mirror",idol:"Mirror Baekhyun",group:"EXO",rarity:"Mirror"},
   {pack:"Mirror",idol:"Mirror Yeonjun",group:"TXT",rarity:"Mirror"},
   {pack:"Mirror",idol:"Mirror Haechan",group:"NCT 127",rarity:"Mirror"},
@@ -705,7 +705,7 @@ const packPool=[
   {pack:"Pets",idol:"Cat Seeun",group:"STAYC",rarity:"Pets"},
   {pack:"Pets",idol:"Puppy Haerin",group:"NewJeans",rarity:"Pets"},
   {pack:"Pets",idol:"Doggo Nayeon",group:"TWICE",rarity:"Pets"},
-  {pack:"Pets",idol:"Puppy Jiwoo",group:"NMIXX",rarity:"Pets"},
+  {pack:"Pets",idol:"Puppy Jiwoo",group:"Hearts2Hearts",rarity:"Pets"},
   {pack:"Formal",idol:"Formal Jay",group:"ENHYPEN",rarity:"Formal"},
   {pack:"Formal",idol:"Formal Jiyu",group:"KiiiKiii",rarity:"Formal"},
   {pack:"Formal",idol:"Formal Jaehee",group:"NCT WISH",rarity:"Formal"},
@@ -838,9 +838,34 @@ function renderRarities(){
 }
 $("raritySearch").addEventListener("input",renderRarities);
 
+function editDistance(a,b){
+  const row=Array.from({length:b.length+1},(_,i)=>i);
+  for(let i=1;i<=a.length;i++){
+    let diagonal=row[0];row[0]=i;
+    for(let j=1;j<=b.length;j++){
+      const above=row[j];
+      row[j]=a[i-1]===b[j-1]?diagonal:1+Math.min(diagonal,row[j-1],above);
+      diagonal=above;
+    }
+  }
+  return row[b.length];
+}
+function isAdjacentSwap(a,b){
+  if(a.length!==b.length)return false;
+  const differences=[];
+  for(let i=0;i<a.length;i++)if(a[i]!==b[i])differences.push(i);
+  return differences.length===2&&differences[1]===differences[0]+1&&a[differences[0]]===b[differences[1]]&&a[differences[1]]===b[differences[0]];
+}
+function fuzzyMatch(value,query){
+  const normalize=text=>text.toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g," ").trim();
+  const target=normalize(value),needle=normalize(query);
+  if(!needle||target.includes(needle))return true;
+  const targetWords=target.split(" "),queryWords=needle.split(" ");
+  return queryWords.every(word=>word.length>=4&&targetWords.some(targetWord=>editDistance(word,targetWord)<=Math.max(1,Math.floor(word.length*.3))||isAdjacentSwap(word,targetWord)));
+}
 function renderPacks(){
-  const q=$("packSearch").value.trim().toLowerCase();
-  const list=packPool.filter(card=>!q||[card.idol,card.group,card.pack,card.rarity].some(value=>value.toLowerCase().includes(q)));
+  const q=$("packSearch").value.trim();
+  const list=packPool.filter(card=>!q||[card.idol,card.group,card.pack,card.rarity].some(value=>fuzzyMatch(value,q)));
   $("packResults").innerHTML=list.length?list.map(card=>`<article class="pack-result"><strong>${card.idol}</strong><div class="pack-meta">${card.group} · ${card.rarity}</div><div class="pack-name ${packClass(card.pack)}">${card.pack} pack</div></article>`).join(""):"<p class=\"muted\">No matching idols or groups.</p>";
   $("packStatus").textContent=`Showing ${list.length} of ${packPool.length} cards`;
 }
