@@ -894,8 +894,18 @@ function renderRecipes(){
 $("ownedMutations").addEventListener("change",renderRecipes);$("recipeSearch").addEventListener("input",renderRecipes);$("recipeModes").addEventListener("change",renderRecipes);
 $("selectBase").onclick=()=>{document.querySelectorAll('[name="ownedMutation"]').forEach(x=>x.checked=mutations.some(m=>m.name===x.value&&m.base));document.querySelector('[name="recipeMode"][value="available"]').checked=true;renderRecipes()};
 $("clearOwned").onclick=()=>{document.querySelectorAll('[name="ownedMutation"]').forEach(x=>x.checked=false);renderRecipes()};
-document.querySelectorAll(".tab").forEach(tabButton=>tabButton.setAttribute("aria-selected",String(tabButton.classList.contains("active"))));
-document.querySelector(".tabs").addEventListener("click",e=>{if(!e.target.dataset.tab)return;document.querySelectorAll(".tab").forEach(x=>{x.classList.remove("active");x.setAttribute("aria-selected","false")});document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));e.target.classList.add("active");e.target.setAttribute("aria-selected","true");$(e.target.dataset.tab).classList.add("active")});
+const tabs=[...document.querySelectorAll(".tab")],validTabs=new Set(tabs.map(tab=>tab.dataset.tab));
+function activateTab(tabId,updateUrl=false){
+  const selectedTab=validTabs.has(tabId)?tabId:"calculator";
+  tabs.forEach(tab=>{const active=tab.dataset.tab===selectedTab;tab.classList.toggle("active",active);tab.setAttribute("aria-selected",String(active))});
+  document.querySelectorAll(".panel").forEach(panel=>panel.classList.toggle("active",panel.id===selectedTab));
+  if(updateUrl){const url=new URL(location.href);url.searchParams.set("tab",selectedTab);history.pushState({tab:selectedTab},"",url)}
+  return selectedTab;
+}
+document.querySelector(".tabs").addEventListener("click",e=>{const tabButton=e.target.closest(".tab");if(tabButton)activateTab(tabButton.dataset.tab,true)});
+window.addEventListener("popstate",()=>activateTab(new URLSearchParams(location.search).get("tab")));
+const requestedTab=new URLSearchParams(location.search).get("tab"),initialTab=activateTab(requestedTab);
+if(requestedTab!==initialTab){const url=new URL(location.href);url.searchParams.set("tab",initialTab);history.replaceState({tab:initialTab},"",url)}
 calculate();renderMutationList();renderRarities();renderPacks();renderRecipes();
 </script>
 </body>
