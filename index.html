@@ -29,6 +29,7 @@
     .fusion-cell{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
     .pack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}.pack-result{border:1px solid var(--line);border-radius:10px;padding:14px}.pack-result strong{display:block;font-size:1.05rem}.pack-meta{color:var(--muted);margin-top:4px}.pack-name{display:inline-block;margin-top:10px;padding:4px 8px;border-radius:999px;font-weight:700}.pack-name.common{background:#e2e8f0;color:#334155}.pack-name.uncommon{background:#dcfce7;color:#166534}.pack-name.rare{background:#dbeafe;color:#1d4ed8}.pack-name.epic{background:#f3e8ff;color:#7e22ce}.pack-name.legendary{background:#fef3c7;color:#a16207}.pack-name.mythic{background:#ffe4e6;color:#be123c}.pack-name.ethereal{background:#cffafe;color:#0e7490}.pack-name.secret{background:#ede9fe;color:#6d28d9}.pack-name.oblivion{background:#e0e7ff;color:#3730a3}.pack-name.eternal{background:#dbeafe;color:#1e3a8a}.pack-name.transcendent{background:#ccfbf1;color:#0f766e}.pack-name.infinity{background:#111827;color:#f9fafb}.pack-name.apex{background:#ffedd5;color:#c2410c}.pack-name.fansign{background:#fce7f3;color:#be185d}.pack-name.vacation{background:#dbeafe;color:#0369a1}.pack-name.concept{background:#fae8ff;color:#a21caf}.pack-name.performance{background:#fee2e2;color:#b91c1c}.pack-name.iconic{background:#1f2937;color:#fbbf24}.pack-name.fashion{background:#e5e7eb;color:#111827}.pack-name.harmony{background:#d1fae5;color:#065f46}.pack-name.munch{background:#fed7aa;color:#9a3412}.pack-name.mirror{background:#cffafe;color:#155e75}.pack-name.cutesy{background:#fce7f3;color:#9d174d}.pack-name.pets{background:#dbeafe;color:#1e40af}.pack-name.formal{background:#e2e8f0;color:#1e293b}.pack-name.plushie{background:#ede9fe;color:#6d28d9}
     .pack-name.oblivion{background:#ffedd5;color:#c2410c}.pack-name.eternal{background:#fef3c7;color:#92400e}.pack-name.transcendent{background:#f3e8ff;color:#7e22ce}.pack-name.infinity{background:#cffafe;color:#0e7490}.pack-name.apex{background:#f3f4f6;color:#374151}.pack-name.fansign{background:#ffedd5;color:#c2410c}.pack-name.vacation{background:#fef3c7;color:#a16207}.pack-name.concept{background:#e0f2fe;color:#0369a1}.pack-name.performance{background:#fce7f3;color:#be185d}.pack-name.iconic{background:#fee2e2;color:#991b1b}.pack-name.fashion{background:#dbeafe;color:#1e3a8a}.pack-name.harmony{background:#e0e7ff;color:#4338ca}.pack-name.munch{background:#fce7f3;color:#be6b8a}.pack-name.mirror{background:#fee2e2;color:#c75c64}.pack-name.cutesy{background:#fae8ff;color:#a21caf}.pack-name.pets{background:#f3e8ff;color:#9333a8}.pack-name.formal{background:#fae8ff;color:#a21caf}.pack-name.plushie{background:#f3e8ff;color:#8b5ca3}
+    .pack-name.event{background:#e5e7eb;color:#111827}
     .tab:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #60a5fa;outline-offset:2px}
     .chip-label input:focus-visible+.chip{outline:3px solid #60a5fa;outline-offset:2px}
     .radiant{background:#fff;color:#111827;border-color:#aab4c3}.blazing{background:#ff2b2b;color:#fff}.iceborn{background:#aeebff;color:#123047}.moonlit{background:#ffd84d;color:#3b2f00}.corrupted{background:#8a2be2;color:#fff}.abyssal{background:#0b1f5b;color:#fff}.candy{background:#ff69b4;color:#fff}.crimson{background:#dc143c;color:#fff}
@@ -107,7 +108,7 @@
   <section class="panel" id="packs">
     <div class="card">
       <h2>Pack search</h2>
-      <p class="muted">Search by idol or group name across the recorded Common, Uncommon, Rare, Epic, Legendary, Mythic, Ethereal, Secret, Oblivion, Eternal, Transcendent, Infinity, Apex, Fansign, Vacation, Concept, Performance, Iconic, Fashion, Harmony, Munch, Mirror, Cutesy, Pets, Formal, and Plushie packs.</p>
+      <p class="muted">Search by idol or group name across the recorded Common, Uncommon, Rare, Epic, Legendary, Mythic, Ethereal, Secret, Oblivion, Eternal, Transcendent, Infinity, Apex, Fansign, Vacation, Concept, Performance, Iconic, Fashion, Harmony, Munch, Mirror, Cutesy, Pets, Formal, Plushie, and Event packs.</p>
       <label class="field">Search idol or group<input id="packSearch" type="search" placeholder="Idol or group name"></label>
       <p class="status" id="packStatus"></p>
       <div class="pack-grid" id="packResults"></div>
@@ -749,7 +750,28 @@ const packPool=[
   {pack:"Plushie",idol:"Plushie Anna",group:"MEOVV",rarity:"Plushie"},
   {pack:"Plushie",idol:"Plushie Jaehee",group:"NCT WISH",rarity:"Plushie"},
   {pack:"Plushie",idol:"Plushie Sakura",group:"LE SSERAFIM",rarity:"Plushie"},
-  {pack:"Plushie",idol:"Plushie Rora",group:"BABYMONSTER",rarity:"Plushie"}
+  {pack:"Plushie",idol:"Plushie Rora",group:"BABYMONSTER",rarity:"Plushie"},
+  {pack:"Event",idol:"Apple Leesol",group:"KiiiKiii",rarity:"Event"},
+  {pack:"Event",idol:"Aquatic Sumin",group:"STAYC",rarity:"Event"},
+  {pack:"Event",idol:"Sunlit Sunwoo",group:"THE BOYZ",rarity:"Event"},
+  {pack:"Event",idol:"Pocari Iroha",group:"ILLIT",rarity:"Event"},
+  {pack:"Event",idol:"Balmy Yujin",group:"IVE",rarity:"Event"},
+  {pack:"Event",idol:"Warm Jihoon",group:"TWS",rarity:"Event"},
+  {pack:"Event",idol:"Dewy Jiwoo",group:"Hearts2Hearts",rarity:"Event"},
+  {pack:"Event",idol:"Sunsoaked Haum",group:"KiiiKiii",rarity:"Event"},
+  {pack:"Event",idol:"Oceanic I.N",group:"Stray Kids",rarity:"Event"},
+  {pack:"Event",idol:"Tropical Winter",group:"aespa",rarity:"Event"},
+  {pack:"Event",idol:"Breezy Joonie",group:"Hearts2Hearts",rarity:"Event"},
+  {pack:"Event",idol:"Sandy Mingi",group:"ATEEZ",rarity:"Event"},
+  {pack:"Event",idol:"Summery Chuu",group:"Solo",rarity:"Event"},
+  {pack:"Event",idol:"Solar Yeonjun X Taehyun",group:"TXT",rarity:"Event"},
+  {pack:"Event",idol:"Coral Belle",group:"KISS OF LIFE",rarity:"Event"},
+  {pack:"Event",idol:"Coastal Carmen",group:"Hearts2Hearts",rarity:"Event"},
+  {pack:"Event",idol:"Glowing Danielle",group:"NewJeans",rarity:"Event"},
+  {pack:"Event",idol:"Salty Youngjae",group:"TWS",rarity:"Event"},
+  {pack:"Event",idol:"Marine Jacob",group:"THE BOYZ",rarity:"Event"},
+  {pack:"Event",idol:"Sunkissed Gaeul",group:"IVE",rarity:"Event"},
+  {pack:"Event",idol:"Beachy Eunchae",group:"LE SSERAFIM",rarity:"Event"}
 ];
 const grades=[["F",1],["E",1.1],["D",1.2],["C",1.3],["B",1.4],["A",1.5],["S",1.6],["X",1.8],["SS",1.9],["XX",2]];
 const recipes=[
@@ -823,7 +845,7 @@ function renderPacks(){
   $("packStatus").textContent=`Showing ${list.length} of ${packPool.length} cards`;
 }
 $("packSearch").addEventListener("input",renderPacks);
-const packClassNames={Common:"common",Uncommon:"uncommon",Rare:"rare",Epic:"epic",Legendary:"legendary",Mythic:"mythic",Ethereal:"ethereal",Secret:"secret",Oblivion:"oblivion",Eternal:"eternal",Transcendent:"transcendent",Infinity:"infinity",Apex:"apex",Fansign:"fansign",Vacation:"vacation",Concept:"concept",Performance:"performance",Iconic:"iconic",Fashion:"fashion",Harmony:"harmony",Munch:"munch",Mirror:"mirror",Cutesy:"cutesy",Pets:"pets",Formal:"formal",Plushie:"plushie"};
+const packClassNames={Common:"common",Uncommon:"uncommon",Rare:"rare",Epic:"epic",Legendary:"legendary",Mythic:"mythic",Ethereal:"ethereal",Secret:"secret",Oblivion:"oblivion",Eternal:"eternal",Transcendent:"transcendent",Infinity:"infinity",Apex:"apex",Fansign:"fansign",Vacation:"vacation",Concept:"concept",Performance:"performance",Iconic:"iconic",Fashion:"fashion",Harmony:"harmony",Munch:"munch",Mirror:"mirror",Cutesy:"cutesy",Pets:"pets",Formal:"formal",Plushie:"plushie",Event:"event"};
 function packClass(name){return packClassNames[name]||""}
 
 function badge(n){return `<span class="chip ${colors[n]||""}" style="${mutationStyle(n)}">${n}</span>`}
