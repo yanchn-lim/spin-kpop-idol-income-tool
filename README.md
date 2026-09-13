@@ -12,4 +12,4 @@ This is not an official game tool or a definitive source of game data.
 
 ## Running it
 
-Open `index.html` in a browser. No setup is required.
+Open `index.html` in a browser. Keep `styles.css`, `data.js`, and `app.js` beside it. No setup is required.
