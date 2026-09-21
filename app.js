@@ -24,6 +24,20 @@ function showCalculatorError(message){$("finalMoney").textContent="Cannot calcul
 ["weight","rarity","grade"].forEach(id=>$(id).addEventListener("input",calculate));
 $("calcMutations").addEventListener("change",calculate);$("clearCalc").onclick=()=>{document.querySelectorAll('[name="calcMutation"]').forEach(x=>x.checked=false);calculate()};
 
+function calculateTotalIncome(){
+  const ids=["baseIncome","rebirthBoost","friendBoost","vipBoost"];
+  const values=ids.map(id=>$(id).value.trim()===""?NaN:Number($(id).value));
+  if(values.some(value=>!Number.isFinite(value)||value<0)){
+    $("onlineMoney").textContent="Enter non-negative values";
+    $("offlineMoney").textContent="Enter non-negative values";
+    return;
+  }
+  const [base,rebirth,friend,vip]=values;
+  $("onlineMoney").textContent=money(base*(1+(rebirth+friend)/100)*(1+vip/100));
+  $("offlineMoney").textContent=money(base*0.5);
+}
+["baseIncome","rebirthBoost","friendBoost","vipBoost"].forEach(id=>$(id).addEventListener("input",calculateTotalIncome));
+
 function renderMutationList(){
   const q=$("mutationSearch").value.trim().toLowerCase(),mode=document.querySelector('[name="mutationMode"]:checked').value;
   const list=mutations.filter(m=>(mode==="all"||m.status===mode)&&(!q||m.name.toLowerCase().includes(q)||(m.value!=null&&String(m.value).includes(q))));
@@ -112,4 +126,4 @@ document.querySelector(".tabs").addEventListener("click",e=>{const tabButton=e.t
 window.addEventListener("popstate",()=>activateTab(new URLSearchParams(location.search).get("tab")));
 const requestedTab=new URLSearchParams(location.search).get("tab"),initialTab=activateTab(requestedTab);
 if(requestedTab!==initialTab){const url=new URL(location.href);url.searchParams.set("tab",initialTab);history.replaceState({tab:initialTab},"",url)}
-calculate();renderMutationList();renderRarities();renderPacks();renderRecipes();
+calculate();calculateTotalIncome();renderMutationList();renderRarities();renderPacks();renderRecipes();
