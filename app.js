@@ -25,18 +25,20 @@ function showCalculatorError(message){$("finalMoney").textContent="Cannot calcul
 $("calcMutations").addEventListener("change",calculate);$("clearCalc").onclick=()=>{document.querySelectorAll('[name="calcMutation"]').forEach(x=>x.checked=false);calculate()};
 
 function calculateTotalIncome(){
-  const ids=["baseIncome","rebirthBoost","friendBoost","vipBoost"];
+  const ids=["baseIncome","rebirthBoost","friendBoost"];
   const values=ids.map(id=>$(id).value.trim()===""?NaN:Number($(id).value));
   if(values.some(value=>!Number.isFinite(value)||value<0)){
     $("onlineMoney").textContent="Enter non-negative values";
     $("offlineMoney").textContent="Enter non-negative values";
     return;
   }
-  const [base,rebirth,friend,vip]=values;
-  $("onlineMoney").textContent=money(base*(1+(rebirth+friend)/100)*(1+vip/100));
+  const [base,rebirth,friend]=values;
+  const vipMultiplier=$("hasVip").checked?1.10:1;
+  $("onlineMoney").textContent=money(base*(1+(rebirth+friend)/100)*vipMultiplier);
   $("offlineMoney").textContent=money(base*0.5);
 }
-["baseIncome","rebirthBoost","friendBoost","vipBoost"].forEach(id=>$(id).addEventListener("input",calculateTotalIncome));
+["baseIncome","rebirthBoost","friendBoost"].forEach(id=>$(id).addEventListener("input",calculateTotalIncome));
+$("hasVip").addEventListener("change",calculateTotalIncome);
 
 function renderMutationList(){
   const q=$("mutationSearch").value.trim().toLowerCase(),mode=document.querySelector('[name="mutationMode"]:checked').value;
