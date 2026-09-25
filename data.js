@@ -11,14 +11,14 @@ const rarities=[
   ["Common",.75],["Uncommon",1.25],["Rare",1.8],["Epic",9],["Legendary",11],["Mythic",12],["Ethereal",14],["Secret",17],
   ["Oblivion",24],["Eternal",28],["Transcendent",34],["Infinity",250],["Apex",460],["Event",475],["Fansign",480],["Vacation",490],
   ["Concept",500],["Performance",520],["Visual",530],["Iconic",545],["Fashion",555],["Harmony",575],["Munch",595],["Cutesy",610],["Pets",650],
-  ["Maknae",665],["Formal",675],["Plushie",685]
+  ["Airport",660],["Maknae",665],["Formal",675],["Plushie",685],["Vocal",770]
 ];
 const observedWeights={
   Ethereal:[46.92,59.97,8],Infinity:[99.13,106.25,3],Apex:[99.55,119.67,26],Event:[95.00,124.56,35],
-  Fansign:[100.00,121.09,17],Vacation:[110.89,122.99,7],Concept:[100.80,124.60,34],Performance:[110.09,129.63,56],Visual:[110.54,128.98,15],
+  Fansign:[100.00,121.09,17],Vacation:[110.89,122.99,7],Concept:[100.80,124.60,34],Performance:[110.09,129.63,56],Visual:[110.54,129.16,16],
   Fashion:[120.04,139.96,34],Iconic:[111.18,129.83,41],Harmony:[122.19,134.44,23],
-  Munch:[119.47,144.96,46],Cutesy:[128.19,144.98,38],Pets:[133.31,144.66,29],Maknae:[130.09,143.09,8],Formal:[127.93,144.46,11],
-  Plushie:[146.37,149.99,9]
+  Munch:[119.47,144.96,46],Cutesy:[128.19,144.98,38],Pets:[133.31,144.66,29],Maknae:[130.09,144.46,9],Formal:[127.93,144.46,11],
+  Plushie:[146.37,149.99,9],Airport:[129.21,144.38,2],Vocal:[150.66,162.78,2]
 };
 const packPool=[
   {pack:"Common",idol:"Jiwoong",group:"ZEROBASEONE",rarity:"Common"},
@@ -760,7 +760,45 @@ const packPool=[
   {pack:"Center",idol:"Center Taeyong",group:"NCT 127",rarity:"Center"},
   {pack:"Center",idol:"Center Jaehyun",group:"BOYNEXTDOOR",rarity:"Center"},
   {pack:"Center",idol:"Center Jeemin",group:"izna",rarity:"Center"},
-  {pack:"Center",idol:"Center Chaewon",group:"LE SSERAFIM",rarity:"Center"}
+  {pack:"Center",idol:"Center Chaewon",group:"LE SSERAFIM",rarity:"Center"},
+  {pack:"Airport",idol:"Airport Minnie",group:"(G)I-DLE",rarity:"Airport"},
+  {pack:"Airport",idol:"Airport Stella",group:"Hearts2Hearts",rarity:"Airport"},
+  {pack:"Airport",idol:"Airport Ruka",group:"BABYMONSTER",rarity:"Airport"},
+  {pack:"Airport",idol:"Airport Moka",group:"ILLIT",rarity:"Airport"},
+  {pack:"Airport",idol:"Airport Giselle",group:"aespa",rarity:"Airport"},
+  {pack:"Airport",idol:"Airport Ni-ki",group:"ENHYPEN",rarity:"Airport"},
+  {pack:"Airport",idol:"Airport Felix",group:"Stray Kids",rarity:"Airport"},
+  {pack:"Airport",idol:"Airport Rei",group:"IVE",rarity:"Airport"},
+  {pack:"Airport",idol:"Airport Jennie",group:"BLACKPINK",rarity:"Airport"},
+  {pack:"Airport",idol:"Airport Sana",group:"TWICE",rarity:"Airport"},
+  {pack:"Airport",idol:"Airport Kazuha",group:"LE SSERAFIM",rarity:"Airport"},
+  {pack:"Airport",idol:"Airport Yeonjun",group:"TXT",rarity:"Airport"},
+  {pack:"Airport",idol:"Airport Hanni",group:"NewJeans",rarity:"Airport"},
+  {pack:"Airport",idol:"Airport Sakura",group:"LE SSERAFIM",rarity:"Airport"},
+  {pack:"Airport",idol:"Airport Jake",group:"ENHYPEN",rarity:"Airport"},
+  {pack:"Vocal",idol:"Vocal Lily",group:"NMIXX",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal DK",group:"SEVENTEEN",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Miyeon",group:"(G)I-DLE",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Keeho",group:"P1Harmony",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Jongho",group:"ATEEZ",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Wendy",group:"Red Velvet",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Evan",group:"Solo",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Seungmin",group:"Stray Kids",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Sieun",group:"STAYC",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Rami",group:"BABYMONSTER",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Yunjin",group:"LE SSERAFIM",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Baekhyun",group:"EXO",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Sung Hanbin",group:"ZEROBASEONE",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Taeyeon",group:"Girls' Generation",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Liz",group:"IVE",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Ningning",group:"aespa",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Chaehyun",group:"Kep1er",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Taehyun",group:"TXT",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Rosé",group:"BLACKPINK",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Jihyo",group:"TWICE",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Haewon",group:"NMIXX",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Belle",group:"KISS OF LIFE",rarity:"Vocal"},
+  {pack:"Vocal",idol:"Vocal Sohee",group:"RIIZE",rarity:"Vocal"}
 ];
 const grades=[["F",1],["E",1.1],["D",1.2],["C",1.3],["B",1.4],["A",1.5],["S",1.6],["X",1.8],["SS",1.9],["XX",2]];
 const recipes=[

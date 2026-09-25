@@ -29,6 +29,8 @@ th{background:var(--navy);color:#fff;font-size:.78rem;text-transform:uppercase;l
 .pack-name.maknae{background:#ecfccb;color:#3f6212}
 .pack-name.leader{background:#dbeafe;color:#1e40af}
 .pack-name.center{background:#fce7f3;color:#9d174d}
+.pack-name.airport{background:#e2e8f0;color:#334155}
+.pack-name.vocal{background:#ede9fe;color:#6d28d9}
 .tab:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #60a5fa;outline-offset:2px}
 .chip-label input:focus-visible+.chip{outline:3px solid #60a5fa;outline-offset:2px}
 .radiant{background:#fff;color:#111827;border-color:#aab4c3}.blazing{background:#ff2b2b;color:#fff}.iceborn{background:#aeebff;color:#123047}.moonlit{background:#ffd84d;color:#3b2f00}.corrupted{background:#8a2be2;color:#fff}.abyssal{background:#0b1f5b;color:#fff}.candy{background:#ff69b4;color:#fff}.crimson{background:#dc143c;color:#fff}
