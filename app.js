@@ -22,7 +22,13 @@ function calculate(){
 }
 function showCalculatorError(message){$("finalMoney").textContent="Cannot calculate";$("breakdown").textContent=message}
 ["weight","rarity","grade"].forEach(id=>$(id).addEventListener("input",calculate));
-$("calcMutations").addEventListener("change",calculate);$("clearCalc").onclick=()=>{document.querySelectorAll('[name="calcMutation"]').forEach(x=>x.checked=false);calculate()};
+$("calcMutations").addEventListener("change",calculate);
+$("clearCalc").addEventListener("click",()=>{
+  document.querySelectorAll('[name="calcMutation"]').forEach(input=>{
+    input.checked=false;
+  });
+  calculate();
+});
 
 function calculateTotalIncome(){
   const ids=["baseIncome","rebirthBoost","friendBoost"];
@@ -92,8 +98,7 @@ function renderPacks(){
   $("packStatus").textContent=`Showing ${list.length} of ${packPool.length} cards`;
 }
 $("packSearch").addEventListener("input",renderPacks);
-const packClassNames={Common:"common",Uncommon:"uncommon",Rare:"rare",Epic:"epic",Legendary:"legendary",Mythic:"mythic",Ethereal:"ethereal",Secret:"secret",Oblivion:"oblivion",Eternal:"eternal",Transcendent:"transcendent",Infinity:"infinity",Apex:"apex",Fansign:"fansign",Vacation:"vacation",Concept:"concept",Performance:"performance",Iconic:"iconic",Fashion:"fashion",Harmony:"harmony",Munch:"munch",Mirror:"mirror",Cutesy:"cutesy",Pets:"pets",Formal:"formal",Plushie:"plushie",Event:"event",Visual:"visual",Maknae:"maknae",Leader:"leader",Center:"center"};
-function packClass(name){return packClassNames[name]||""}
+function packClass(name){return name.toLowerCase().replace(/[^a-z0-9]+/g,"-")}
 
 function badge(n){return `<span class="chip ${colors[n]||""}" style="${mutationStyle(n)}">${n}</span>`}
 function renderRecipes(){

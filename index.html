@@ -30,7 +30,7 @@
         <h3>Mutations</h3>
         <p class="muted">Select every mutation on the card. Unknown multipliers cannot be calculated.</p>
         <div class="chips" id="calcMutations"></div>
-        <div class="actions" style="margin-top:14px"><button class="btn" id="clearCalc">Clear mutations</button></div>
+        <div class="actions calc-actions"><button class="btn" id="clearCalc">Clear mutations</button></div>
       </div>
       <div class="card">
         <h2>Estimated income</h2>
@@ -46,13 +46,13 @@
     <div class="card">
       <h2>Total income</h2>
       <p class="muted">Use the game's top Money Per Second value as the base. The online boost formula and half-rate offline formula are estimates from observed payouts.</p>
-      <div class="fields">
+      <div class="fields total-fields">
         <label class="field">Base money per second ($)<input id="baseIncome" type="number" min="0" step="any" value="71260000"></label>
         <label class="field">Rebirth bonus (%)<input id="rebirthBoost" type="number" min="0" step="any" value="420"></label>
         <label class="field">Friend boost (%)<input id="friendBoost" type="number" min="0" step="any" value="10"></label>
         <label class="field">VIP (+10%)<span class="vip-option"><input id="hasVip" type="checkbox" checked> Enabled</span></label>
       </div>
-      <div class="grid" style="margin-top:18px">
+      <div class="grid total-results">
         <div class="resultbox"><strong>Estimated online income</strong><div class="money" id="onlineMoney"></div><p class="breakdown">Base × (1 + rebirth + friend) × (1 + VIP)</p></div>
         <div class="resultbox"><strong>Estimated offline income</strong><div class="money" id="offlineMoney"></div><p class="breakdown">Base × 0.5</p></div>
       </div>
@@ -126,7 +126,7 @@
       <h3>Filter recipes</h3>
       <div class="toolbar">
         <label class="field">Search recipes<input id="recipeSearch" type="search" placeholder="Ingredient or result"></label>
-        <div><div class="tag" style="margin-bottom:6px">Show recipes</div><div class="modes" id="recipeModes">
+        <div><div class="tag recipe-mode-label">Show recipes</div><div class="modes" id="recipeModes">
           <label><input type="radio" name="recipeMode" value="all" checked> All recipes</label>
           <label><input type="radio" name="recipeMode" value="related"> Uses owned</label>
           <label><input type="radio" name="recipeMode" value="available"> Craftable now</label>
