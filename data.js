@@ -11,14 +11,15 @@ const rarities=[
   ["Common",.75],["Uncommon",1.25],["Rare",1.8],["Epic",9],["Legendary",11],["Mythic",12],["Ethereal",14],["Secret",17],
   ["Oblivion",24],["Eternal",28],["Transcendent",34],["Infinity",250],["Apex",460],["Event",475],["Fansign",480],["Vacation",490],
   ["Concept",500],["Performance",520],["Visual",530],["Iconic",545],["Fashion",555],["Harmony",575],["Munch",595],["Cutesy",610],["Pets",650],
-  ["Airport",660],["Maknae",665],["Formal",675],["Plushie",685],["Vocal",770]
+  ["Airport",660],["Maknae",665],["Formal",675],["Plushie",685],["Rapper",700],["Vocal",770],["Festival",800]
 ];
 const observedWeights={
   Ethereal:[46.92,59.97,8],Infinity:[99.13,106.25,3],Apex:[99.55,119.67,26],Event:[95.00,124.56,35],
   Fansign:[100.00,121.09,17],Vacation:[110.89,122.99,7],Concept:[100.80,124.60,34],Performance:[110.09,129.63,56],Visual:[110.54,129.16,16],
   Fashion:[120.04,139.96,34],Iconic:[111.18,129.83,41],Harmony:[122.19,134.44,23],
   Munch:[119.47,144.96,46],Cutesy:[128.19,144.98,38],Pets:[133.31,144.66,29],Maknae:[130.09,144.46,9],Formal:[127.93,144.46,11],
-  Plushie:[146.37,149.99,9],Airport:[129.21,144.38,2],Vocal:[150.66,164.74,9]
+  Plushie:[146.37,149.99,9],Airport:[129.21,144.38,2],Vocal:[150.66,164.74,11],
+  Rapper:[125.50,143.12,12],Festival:[151.15,172.91,11]
 };
 const packPool=[
   {pack:"Common",idol:"Jiwoong",group:"ZEROBASEONE",rarity:"Common"},
@@ -798,7 +799,51 @@ const packPool=[
   {pack:"Vocal",idol:"Vocal Jihyo",group:"TWICE",rarity:"Vocal"},
   {pack:"Vocal",idol:"Vocal Haewon",group:"NMIXX",rarity:"Vocal"},
   {pack:"Vocal",idol:"Vocal Belle",group:"KISS OF LIFE",rarity:"Vocal"},
-  {pack:"Vocal",idol:"Vocal Sohee",group:"RIIZE",rarity:"Vocal"}
+  {pack:"Vocal",idol:"Vocal Sohee",group:"RIIZE",rarity:"Vocal"},
+  {pack:"Festival",idol:"Festival Ian",group:"Hearts2Hearts",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Jaehyun",group:"BOYNEXTDOOR",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Haum",group:"KiiiKiii",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Wonyoung",group:"IVE",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Woojin",group:"Solo",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Jungwon",group:"ENHYPEN",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Yunho",group:"ATEEZ",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Hanni",group:"NewJeans",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Yuha",group:"Hearts2Hearts",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Keonho",group:"CORTIS",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Jungeun",group:"izna",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Eunchae",group:"LE SSERAFIM",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Yuna",group:"ITZY",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Jeno",group:"NCT DREAM",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Sooin",group:"MEOVV",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Iroha",group:"ILLIT",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Hanjin",group:"TWS",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Winter",group:"aespa",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Stella",group:"Hearts2Hearts",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Sullyoon",group:"NMIXX",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Jisung",group:"NCT DREAM",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival Matthew",group:"ZEROBASEONE",rarity:"Festival"},
+  {pack:"Festival",idol:"Festival May",group:"RESCENE",rarity:"Festival"},
+  {pack:"Rapper",idol:"Rapper Asa",group:"BABYMONSTER",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Ryujin",group:"ITZY",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Minji",group:"NewJeans",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Megan",group:"KATSEYE",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Changbin",group:"Stray Kids",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Kazuha",group:"LE SSERAFIM",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Jay",group:"ENHYPEN",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Giselle",group:"aespa",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Shotaro",group:"RIIZE",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Dahyun",group:"TWICE",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Jaehyun",group:"BOYNEXTDOOR",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Mingi",group:"ATEEZ",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Hongjoong",group:"ATEEZ",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Jennie",group:"BLACKPINK",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper RM",group:"BTS",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Moka",group:"ILLIT",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Gawon",group:"MEOVV",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Julie",group:"KISS OF LIFE",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Rei",group:"IVE",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper Soyeon",group:"(G)I-DLE",rarity:"Rapper"},
+  {pack:"Rapper",idol:"Rapper G-Dragon",group:"BIGBANG",rarity:"Rapper"}
 ];
 const grades=[["F",1],["E",1.1],["D",1.2],["C",1.3],["B",1.4],["A",1.5],["S",1.6],["X",1.8],["SS",1.9],["XX",2]];
 const recipes=[
