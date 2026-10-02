@@ -11,7 +11,7 @@ const rarities=[
   ["Common",.75],["Uncommon",1.25],["Rare",1.8],["Epic",9],["Legendary",11],["Mythic",12],["Ethereal",14],["Secret",17],
   ["Oblivion",24],["Eternal",28],["Transcendent",34],["Infinity",250],["Apex",460],["Event",475],["Fansign",480],["Vacation",490],
   ["Concept",500],["Performance",520],["Visual",530],["Iconic",545],["Fashion",555],["Harmony",575],["Munch",595],["Cutesy",610],["Pets",650],
-  ["Airport",660],["Maknae",665],["Formal",675],["Plushie",685],["Rapper",700],["Vocal",770],["Festival",800]
+  ["Airport",660],["Maknae",665],["Formal",675],["Plushie",685],["Rapper",700],["Leader",715],["Center",745],["Vocal",770],["Festival",800]
 ];
 const observedWeights={
   Ethereal:[46.92,59.97,8],Infinity:[99.13,106.25,3],Apex:[99.55,119.67,26],Event:[95.00,124.56,35],
@@ -19,7 +19,7 @@ const observedWeights={
   Fashion:[120.04,139.96,34],Iconic:[111.18,129.83,41],Harmony:[122.19,134.44,23],
   Munch:[119.47,144.96,46],Cutesy:[128.19,144.98,38],Pets:[133.31,144.66,29],Maknae:[130.09,144.46,9],Formal:[127.93,144.46,11],
   Plushie:[146.37,149.99,9],Airport:[129.21,144.38,2],Vocal:[150.66,164.74,11],
-  Rapper:[125.50,143.12,12],Festival:[151.15,172.91,11]
+  Rapper:[125.50,143.12,12],Festival:[151.15,172.91,11],Leader:[151.07,154.78,3],Center:[140.27,154.16,6]
 };
 const packPool=[
   {pack:"Common",idol:"Jiwoong",group:"ZEROBASEONE",rarity:"Common"},
@@ -762,6 +762,7 @@ const packPool=[
   {pack:"Center",idol:"Center Jaehyun",group:"BOYNEXTDOOR",rarity:"Center"},
   {pack:"Center",idol:"Center Jeemin",group:"izna",rarity:"Center"},
   {pack:"Center",idol:"Center Chaewon",group:"LE SSERAFIM",rarity:"Center"},
+  {pack:"Center",idol:"Center Hyunjin",group:"Stray Kids",rarity:"Center"},
   {pack:"Airport",idol:"Airport Minnie",group:"(G)I-DLE",rarity:"Airport"},
   {pack:"Airport",idol:"Airport Stella",group:"Hearts2Hearts",rarity:"Airport"},
   {pack:"Airport",idol:"Airport Ruka",group:"BABYMONSTER",rarity:"Airport"},
