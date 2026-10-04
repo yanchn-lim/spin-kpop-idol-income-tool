@@ -10,7 +10,8 @@
 <main class="wrap">
   <h1>Spin a KPOP Idol</h1>
   <p class="lead">Income calculator, mutation reference, and fusion recipe tracker.</p>
-  <nav class="tabs" aria-label="Page sections">
+  <p class="notice">Unofficial game tool. Data is incomplete and may change as more evidence is collected.</p>
+  <nav class="tabs" role="tablist" aria-label="Page sections">
     <button class="tab active" data-tab="calculator">Calculator</button>
     <button class="tab" data-tab="mutations">Mutation list</button>
     <button class="tab" data-tab="rates">Rarity rates</button>
@@ -23,18 +24,19 @@
       <div class="card">
         <h2>Card details</h2>
         <div class="fields">
-          <label class="field">Weight (kg)<input id="weight" type="number" min="0" step=".01" value="100"></label>
-          <label class="field">Rarity<select id="rarity"></select></label>
+          <label class="field">Weight (kg)<input id="weight" type="number" min="0.01" step=".01" value="100" aria-describedby="breakdown"></label>
+          <label class="field">Rarity<select id="rarity" aria-describedby="breakdown"></select></label>
           <label class="field">Grade<select id="grade"></select></label>
         </div>
         <h3>Mutations</h3>
-        <p class="muted">Select every mutation on the card. Unknown multipliers cannot be calculated.</p>
-        <div class="chips" id="calcMutations"></div>
+        <p class="muted" id="mutationHelp">Select the mutations on your card. This calculator does not enforce slot limits or check whether a combination can be crafted.</p>
+        <p class="status" id="calcSelection" role="status" aria-atomic="true"></p>
+        <div class="chips" id="calcMutations" role="group" aria-label="Card mutations" aria-describedby="mutationHelp breakdown"></div>
         <div class="actions calc-actions"><button class="btn" id="clearCalc">Clear mutations</button></div>
       </div>
       <div class="card">
         <h2>Estimated income</h2>
-        <div class="resultbox">
+        <div class="resultbox" role="status" aria-atomic="true">
           <div class="money" id="finalMoney">$25,000.00/s</div>
           <p class="breakdown" id="breakdown"></p>
         </div>
@@ -44,15 +46,16 @@
       </div>
     </div>
     <div class="card">
-      <h2>Total income</h2>
-      <p class="muted">Use the game's top Money Per Second value as the base. The online boost formula and half-rate offline formula are estimates from observed payouts.</p>
+      <h2>Total income — separate calculator</h2>
+      <p class="muted" id="totalHelp">Enter the game's top Money Per Second value. This base does not update from the card calculator above. Online and offline formulas are estimates from observed payouts.</p>
+      <p class="status" id="totalError" role="status" aria-atomic="true"></p>
       <div class="fields total-fields">
-        <label class="field">Base money per second ($)<input id="baseIncome" type="number" min="0" step="any" value="71260000"></label>
-        <label class="field">Rebirth bonus (%)<input id="rebirthBoost" type="number" min="0" step="any" value="420"></label>
-        <label class="field">Friend boost (%)<input id="friendBoost" type="number" min="0" step="any" value="10"></label>
+        <label class="field">Base money per second ($)<input id="baseIncome" type="number" min="0" step="any" value="71260000" aria-describedby="totalHelp totalError"></label>
+        <label class="field">Rebirth bonus (%)<input id="rebirthBoost" type="number" min="0" step="any" value="420" aria-describedby="totalHelp totalError"></label>
+        <label class="field">Friend boost (%)<input id="friendBoost" type="number" min="0" step="any" value="10" aria-describedby="totalHelp totalError"></label>
         <label class="field">VIP (+10%)<span class="vip-option"><input id="hasVip" type="checkbox" checked> Enabled</span></label>
       </div>
-      <div class="grid total-results">
+      <div class="grid total-results" aria-live="polite" aria-atomic="true">
         <div class="resultbox"><strong>Estimated online income</strong><div class="money" id="onlineMoney"></div><p class="breakdown">Base × (1 + rebirth + friend) × (1 + VIP)</p></div>
         <div class="resultbox"><strong>Estimated offline income</strong><div class="money" id="offlineMoney"></div><p class="breakdown">Base × 0.5</p></div>
       </div>
@@ -63,13 +66,13 @@
     <div class="card">
       <div class="toolbar">
         <label class="field">Search mutation<input id="mutationSearch" type="search" placeholder="Name or multiplier"></label>
-        <div class="modes" id="mutationModes">
+        <div class="modes" id="mutationModes" role="group" aria-label="Mutation status filter">
           <label><input type="radio" name="mutationMode" value="all" checked> All</label>
           <label><input type="radio" name="mutationMode" value="confirmed"> Confirmed</label>
           <label><input type="radio" name="mutationMode" value="needed"> Needs testing</label>
         </div>
       </div>
-      <p class="status" id="mutationStatus"></p>
+      <p class="status" id="mutationStatus" role="status" aria-atomic="true"></p>
       <div class="mutation-grid" id="mutationList"></div>
     </div>
   </section>
@@ -79,8 +82,8 @@
       <label class="field">Search rarity
         <input id="raritySearch" type="search" placeholder="Rarity or rate">
       </label>
-      <p class="status" id="rarityStatus"></p>
-      <div class="tablewrap">
+      <p class="status" id="rarityStatus" role="status" aria-atomic="true"></p>
+      <div class="tablewrap" tabindex="0" role="region" aria-label="Rarity rates table. Scroll horizontally for more columns.">
         <table>
           <thead><tr><th>Rarity</th><th>Base rate</th><th>Observed weight</th><th>Samples</th><th>Status</th></tr></thead>
           <tbody id="rarityRows"></tbody>
@@ -92,16 +95,37 @@
   <section class="panel" id="packs">
     <div class="card">
       <h2>Pack search</h2>
-      <p class="muted">Search by idol or group name across the recorded Common, Uncommon, Rare, Epic, Legendary, Mythic, Ethereal, Secret, Oblivion, Eternal, Transcendent, Infinity, Apex, Fansign, Vacation, Concept, Performance, Iconic, Fashion, Harmony, Munch, Mirror, Cutesy, Pets, Formal, Plushie, Event, Visual, Maknae, Leader, and Center packs.</p>
-      <label class="field">Search idol or group<input id="packSearch" type="search" placeholder="Idol or group name"></label>
-      <p class="status" id="packStatus"></p>
+      <p class="muted">Search recorded cards by idol, group, pack, or rarity. Try “TWICE” or “Winter”.</p>
+      <label class="field">Search idol, group, pack, or rarity<input id="packSearch" type="search" placeholder="Try TWICE or Winter"></label>
+      <p class="status" id="packStatus" role="status" aria-atomic="true"></p>
       <div class="pack-grid" id="packResults"></div>
     </div>
   </section>
 
   <section class="panel" id="fusions">
     <div class="card">
-      <h2>Best normal four-slot combination</h2>
+      <div class="section-head">
+        <div><h2>Your mutations</h2><p class="muted">Check what you own, then filter the recipes.</p></div>
+        <div class="actions"><button class="btn" id="selectBase">Select all base</button><button class="btn" id="clearOwned">Clear mutations</button></div>
+      </div>
+      <div class="chips" id="ownedMutations" role="group" aria-label="Owned mutations"></div>
+      <p class="status" id="ownedSelection" role="status" aria-atomic="true"></p>
+      <p class="muted">Craftable now checks ingredients only. It does not check free slots or plan a crafting sequence.</p>
+      <h3>Filter recipes</h3>
+      <div class="toolbar">
+        <label class="field">Search recipes<input id="recipeSearch" type="search" placeholder="Ingredient or result"></label>
+        <div><div class="tag recipe-mode-label">Show recipes</div><div class="modes" id="recipeModes" role="group" aria-label="Recipe filter">
+          <label><input type="radio" name="recipeMode" value="all" checked> All recipes</label>
+          <label><input type="radio" name="recipeMode" value="related"> Uses owned</label>
+          <label><input type="radio" name="recipeMode" value="available"> Craftable now</label>
+        </div></div>
+      </div>
+      <p class="status" id="recipeStatus" role="status" aria-atomic="true"></p>
+      <div class="tablewrap" tabindex="0" role="region" aria-label="Fusion recipes table. Scroll horizontally for more columns."><table><thead><tr><th>Ingredients</th><th>Result</th><th>Availability</th></tr></thead><tbody id="recipeRows"></tbody></table></div>
+    </div>
+    <div class="card">
+      <details>
+      <summary>Best normal four-slot combination</summary>
       <p><strong>Starlight + Hollow + Velvet + Crimson = 7.50×</strong></p>
       <p class="muted">Using normal mutations, this is the highest reachable combination when a card is limited to four mutation slots and fusion ingredients are consumed.</p>
       <p><code>5.00 + (4.40−1)/2 + (3.20−1)/4 + (3.00−1)/8 = 7.50×</code></p>
@@ -116,31 +140,16 @@
         <li>Add Crimson. Final mutations: Starlight, Hollow, Velvet, and Crimson.</li>
       </ol>
       <p class="muted">No step exceeds four slots. Starlight + Hollow + Blossom + Cosmic is stronger on paper, but it cannot be crafted on one card under this limit.</p>
+      </details>
     </div>
     <div class="card">
-      <h2>Festive event: alternate best four-slot combination</h2>
+      <details>
+      <summary>Festive event: alternate best four-slot combination</summary>
       <p><strong>Starlight + Hollow + Ghostly + Hallow = 7.7625×</strong></p>
       <p><code>5.00 + (4.40−1)/2 + (4.00−1)/4 + (3.50−1)/8 = 7.7625×</code></p>
       <p>This combination earns 3.5% more than the normal best combination.</p>
       <p class="muted">This is the best reachable combination if Ghostly and Hallow can each be applied directly to a free slot. Their application rules and fusion recipes are not yet confirmed.</p>
-    </div>
-    <div class="card">
-      <div class="section-head">
-        <div><h2>Your mutations</h2><p class="muted">Check what you own, then filter the recipes.</p></div>
-        <div class="actions"><button class="btn" id="selectBase">Select all base</button><button class="btn" id="clearOwned">Clear mutations</button></div>
-      </div>
-      <div class="chips" id="ownedMutations"></div>
-      <h3>Filter recipes</h3>
-      <div class="toolbar">
-        <label class="field">Search recipes<input id="recipeSearch" type="search" placeholder="Ingredient or result"></label>
-        <div><div class="tag recipe-mode-label">Show recipes</div><div class="modes" id="recipeModes">
-          <label><input type="radio" name="recipeMode" value="all" checked> All recipes</label>
-          <label><input type="radio" name="recipeMode" value="related"> Uses owned</label>
-          <label><input type="radio" name="recipeMode" value="available"> Craftable now</label>
-        </div></div>
-      </div>
-      <p class="status" id="recipeStatus"></p>
-      <div class="tablewrap"><table><thead><tr><th>Ingredients</th><th>Result</th><th>Availability</th></tr></thead><tbody id="recipeRows"></tbody></table></div>
+      </details>
     </div>
   </section>
 </main>
