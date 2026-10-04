@@ -5,7 +5,8 @@ const mutations=[
   {name:"Summer",value:2.25,status:"confirmed"},{name:"Abyssal",value:2.3,status:"confirmed",base:true},{name:"Candy",value:2.6,status:"confirmed",base:true},
   {name:"Cherished",value:2.9,status:"confirmed"},{name:"Crimson",value:3,status:"confirmed",base:true},{name:"Glitched",value:3.1,status:"confirmed"},
   {name:"Velvet",value:3.2,status:"confirmed"},{name:"Pixelated",value:3.4,status:"confirmed"},{name:"Blossom",value:4,status:"confirmed"},
-  {name:"Eclipse",value:3,status:"confirmed"},{name:"Cosmic",value:3.8,status:"confirmed"},{name:"Hollow",value:4.4,status:"confirmed"},{name:"Starlight",value:5,status:"confirmed"}
+  {name:"Eclipse",value:3,status:"confirmed"},{name:"Cosmic",value:3.8,status:"confirmed"},{name:"Hollow",value:4.4,status:"confirmed"},{name:"Starlight",value:5,status:"confirmed"},
+  {name:"Ghostly",value:4,status:"confirmed"},{name:"Hallow",value:3.5,status:"confirmed"}
 ];
 const rarities=[
   ["Common",.75],["Uncommon",1.25],["Rare",1.8],["Epic",9],["Legendary",11],["Mythic",12],["Ethereal",14],["Secret",17],
@@ -863,5 +864,6 @@ const mutationColors={
   Cherished:["#d89aac","#32131d"],Crimson:["#a9152a","#ffffff"],Glitched:["#62b36f","#102b14"],
   Velvet:["#cf3f78","#ffffff"],Pixelated:["#7567c9","#ffffff"],Blossom:["#dda4d4","#35142f"],
   Eclipse:["#d66f32","#2c1205"],Cosmic:["#4296ad","#071f29"],Hollow:["#4b445c","#ffffff"],
-  Starlight:["#f1c75b","#332500"]
+  Starlight:["#f1c75b","#332500"],
+  Ghostly:["#a9c6f5","#172b4d"],Hallow:["#d9ac73","#35200d"]
 };
