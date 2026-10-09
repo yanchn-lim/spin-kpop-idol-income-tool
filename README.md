@@ -8,7 +8,7 @@ This is not an official game tool or a definitive source of game data.
 
 ## Game
 
-[Play Spin A KPOP Idol on Roblox](https://www.roblox.com/games/88882214362200/Spin-A-KPOP-Idol)
+[Spin a KPOP Idol by the community of love](https://www.roblox.com/games/95115629288532/Spin-a-KPOP-Idol)
 
 ## Running it
 
