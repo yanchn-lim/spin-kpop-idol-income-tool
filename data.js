@@ -14,6 +14,7 @@ const rarities=[
   ["Concept",500],["Performance",520],["Visual",530],["Iconic",545],["Fashion",555],["Harmony",575],["Munch",595],["Cutesy",610],["Pets",650],
   ["Airport",660],["Maknae",665],["Formal",675],["Plushie",685],["Rapper",700],["Leader",715],["Center",745],["Vocal",770],["Festival",800],["Colorful",770],["Academic",585],["Dancer",690]
 ];
+rarities.sort((a,b)=>(a[1]??Infinity)-(b[1]??Infinity));
 const observedWeights={
   Academic:[120.21,139.40,5],Dancer:[138.91,148.01,5],
   Ethereal:[46.92,59.97,8],Infinity:[99.13,106.25,3],Apex:[99.55,119.67,26],Event:[95.00,124.56,35],
