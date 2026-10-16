@@ -12,7 +12,7 @@ const rarities=[
   ["Common",.75],["Uncommon",1.25],["Rare",1.8],["Epic",9],["Legendary",11],["Mythic",12],["Ethereal",14],["Secret",17],
   ["Oblivion",24],["Eternal",28],["Transcendent",34],["Infinity",250],["Apex",460],["Event",475],["Fansign",480],["Vacation",490],
   ["Concept",500],["Performance",520],["Visual",530],["Iconic",545],["Fashion",555],["Harmony",575],["Munch",595],["Cutesy",610],["Pets",650],
-  ["Airport",660],["Maknae",665],["Formal",675],["Plushie",685],["Rapper",700],["Leader",715],["Center",745],["Vocal",770],["Festival",800],["Colorful",770],["Academic",585],["Dancer",690]
+  ["Airport",660],["Maknae",665],["Formal",675],["Plushie",685],["Rapper",700],["Leader",715],["Center",745],["Vocal",770],["Festival",750],["Colorful",770],["Academic",585],["Dancer",690],["Sporty",765],["Egg",700]
 ];
 rarities.sort((a,b)=>(a[1]??Infinity)-(b[1]??Infinity));
 const observedWeights={
@@ -22,7 +22,7 @@ const observedWeights={
   Fashion:[120.04,139.96,34],Iconic:[111.18,129.83,41],Harmony:[122.19,134.44,23],
   Munch:[119.47,144.96,46],Cutesy:[128.19,144.98,38],Pets:[133.31,144.66,29],Maknae:[130.09,144.46,9],Formal:[127.93,144.46,11],
   Plushie:[146.37,149.99,9],Airport:[129.21,144.38,2],Vocal:[150.66,164.74,11],
-  Rapper:[125.50,143.12,12],Festival:[151.15,172.91,11],Leader:[151.07,154.78,3],Center:[140.27,154.16,6],Colorful:[158.25,178.88,15]
+  Rapper:[125.50,143.12,12],Festival:[151.15,172.91,13],Leader:[151.07,154.78,3],Center:[140.27,154.16,6],Colorful:[158.25,178.88,15],Sporty:[156.82,179.38,18],Egg:[140.20,153.50,4]
 };
 const packPool=[
   {pack:"Common",idol:"Jiwoong",group:"ZEROBASEONE",rarity:"Common"},
@@ -921,7 +921,60 @@ const packPool=[
   {pack:"Dancer",idol:"Dancer Hoshi",group:"SEVENTEEN",rarity:"Dancer"},
   {pack:"Dancer",idol:"Dancer Karina",group:"aespa",rarity:"Dancer"},
   {pack:"Dancer",idol:"Dancer Lee Know",group:"Stray Kids",rarity:"Dancer"},
-  {pack:"Dancer",idol:"Dancer Iroha",group:"ILLIT",rarity:"Dancer"}
+  {pack:"Dancer",idol:"Dancer Iroha",group:"ILLIT",rarity:"Dancer"},
+  {pack:"Sporty",idol:"Sporty Kyujin",group:"NMIXX",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Seonghyeon",group:"CORTIS",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Soobin",group:"TXT",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Lia",group:"ITZY",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Minju",group:"ILLIT",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Louis",group:"LNGSHOT",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Haerin",group:"NewJeans",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Stella",group:"Hearts2Hearts",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Jeno",group:"NCT DREAM",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Kya",group:"KiiiKiii",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Ahyeon",group:"BABYMONSTER",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Wonyoung",group:"IVE",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Hyunjin",group:"Stray Kids",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Chaewon",group:"LE SSERAFIM",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Joshua",group:"SEVENTEEN",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Kyungmin",group:"TWS",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Tzuyu",group:"TWICE",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Maki",group:"&TEAM",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Bobby",group:"iKON",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Zena",group:"RESCENE",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Yuqi",group:"(G)I-DLE",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Jiung",group:"P1Harmony",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty J",group:"STAYC",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty San",group:"ATEEZ",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Jake",group:"ENHYPEN",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Sung Hanbin",group:"ZEROBASEONE",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Woonhak",group:"BOYNEXTDOOR",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Karina",group:"aespa",rarity:"Sporty"},
+  {pack:"Sporty",idol:"Sporty Wonbin",group:"RIIZE",rarity:"Sporty"},
+  {pack:"Egg",idol:"Egg Jungkook",group:"BTS",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Haewon",group:"NMIXX",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Beomgyu",group:"TXT",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Winter",group:"aespa",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Yuna",group:"ITZY",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Taerae",group:"ZEROBASEONE",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Haerin",group:"NewJeans",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Minami",group:"RESCENE",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Sunoo",group:"ENHYPEN",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Pharita",group:"BABYMONSTER",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Yunho",group:"ATEEZ",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Eunchae",group:"LE SSERAFIM",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Keonho",group:"CORTIS",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Dahyun",group:"TWICE",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Leesol",group:"KiiiKiii",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Yoonchae",group:"KATSEYE",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Ryo",group:"NCT WISH",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Soul",group:"P1Harmony",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Taemin",group:"SHINee",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Jaehyun",group:"BOYNEXTDOOR",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Eunseok",group:"RIIZE",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Saebi",group:"izna",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Chanyeol",group:"EXO",rarity:"Egg"},
+  {pack:"Egg",idol:"Egg Joy",group:"Red Velvet",rarity:"Egg"}
 ];
 const grades=[["F",1],["E",1.1],["D",1.2],["C",1.3],["B",1.4],["A",1.5],["S",1.6],["X",1.8],["SS",1.9],["XX",2]];
 const recipes=[
