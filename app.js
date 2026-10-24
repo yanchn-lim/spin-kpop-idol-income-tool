@@ -115,10 +115,10 @@ function renderRarities(){
   const rows=list.map(({name,rate,weightRange})=>{
     const range=weightRange?`${weightRange[0].toFixed(2)}–${weightRange[1].toFixed(2)} kg`:"—";
     const row=element("tr");
-    row.append(tableCell(element("strong",name)),tableCell(rate==null?"—":element("strong",`$${rate.toFixed(2)}/kg`)),tableCell(range),tableCell(rate==null?"Needed":"Confirmed",rate==null?"missing":"ready"));
+    row.append(tableCell(element("strong",name)),tableCell(rate==null?"—":element("strong",`$${rate.toFixed(2)}/kg`)),tableCell(range));
     return row;
   });
-  $("rarityRows").replaceChildren(...(rows.length?rows:[emptyRow("No matching rarities. Clear the search to show all rates.",4)]));
+  $("rarityRows").replaceChildren(...(rows.length?rows:[emptyRow("No matching rarities. Clear the search to show all rates.",3)]));
   $("rarityStatus").textContent=`Showing ${list.length} of ${rarities.length} rarities`;
 }
 $("raritySearch").addEventListener("input",renderRarities);
