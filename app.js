@@ -98,13 +98,13 @@ function renderRarities(){
   const q=$("raritySearch").value.trim().toLowerCase();
   const list=rarities.filter(([name,rate])=>!q||name.toLowerCase().includes(q)||(rate!=null&&String(rate).includes(q)));
   const rows=list.map(([name,rate])=>{
-    const observed=observedWeights[name];
-    const range=observed?(observed[0]===observed[1]?`${observed[0].toFixed(2)} kg`:`${observed[0].toFixed(2)}–${observed[1].toFixed(2)} kg`):"—";
+    const official=officialWeights[name];
+    const range=official?`${official[0].toFixed(2)}–${official[1].toFixed(2)} kg`:"—";
     const row=element("tr");
-    row.append(tableCell(element("strong",name)),tableCell(rate==null?"—":element("strong",`$${rate.toFixed(2)}/kg`)),tableCell(range),tableCell(String(observed?observed[2]:"—")),tableCell(rate==null?"Needed":"Confirmed",rate==null?"missing":"ready"));
+    row.append(tableCell(element("strong",name)),tableCell(rate==null?"—":element("strong",`$${rate.toFixed(2)}/kg`)),tableCell(range),tableCell(rate==null?"Needed":"Confirmed",rate==null?"missing":"ready"));
     return row;
   });
-  $("rarityRows").replaceChildren(...(rows.length?rows:[emptyRow("No matching rarities. Clear the search to show all rates.",5)]));
+  $("rarityRows").replaceChildren(...(rows.length?rows:[emptyRow("No matching rarities. Clear the search to show all rates.",4)]));
   $("rarityStatus").textContent=`Showing ${list.length} of ${rarities.length} rarities`;
 }
 $("raritySearch").addEventListener("input",renderRarities);
