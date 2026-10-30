@@ -65,7 +65,8 @@ const rarities=[
   {name:"Sporty",rate:765,weightRange:[155,180]},
   {name:"Egg",rate:700,weightRange:[135,155]},
   {name:"Mirror",rate:605,weightRange:[125,145]},
-  {name:"Angelic",rate:785,weightRange:[160,185]}
+  {name:"Angelic",rate:785,weightRange:[160,185]},
+  {name:"Soulmates",rate:800,weightRange:[165,190]}
 ];
 rarities.sort((a,b)=>(a.rate??Infinity)-(b.rate??Infinity));
 const packPool=[
@@ -1046,7 +1047,36 @@ const packPool=[
   {pack:"Angelic",idol:"Angelic Kotone",group:"tripleS",rarity:"Angelic"},
   {pack:"Angelic",idol:"Angelic Jiwoo",group:"Hearts2Hearts",rarity:"Angelic"},
   {pack:"Angelic",idol:"Angelic Sullyoon",group:"NMIXX",rarity:"Angelic"},
-  {pack:"Angelic",idol:"Angelic Felix",group:"Stray Kids",rarity:"Angelic"}
+  {pack:"Angelic",idol:"Angelic Felix",group:"Stray Kids",rarity:"Angelic"},
+  {pack:"Soulmates",idol:"Iroha X Wonhee",group:"ILLIT",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Ningning X Giselle",group:"aespa",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Dahyun X Jeongyeon",group:"TWICE",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Rose X Lisa",group:"BLACKPINK",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Nicholas X JO",group:"&TEAM",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Zhang Hao X Hanbin",group:"ZEROBASEONE",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Irene X Seulgi",group:"Red Velvet",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Hoshi X Woozi",group:"SEVENTEEN",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Jiwoo X Kyujin",group:"NMIXX",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Keeho X Soul",group:"P1Harmony",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"K X JO",group:"&TEAM",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Lee Know X Han",group:"Stray Kids",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Matthew X Gunwook",group:"ZEROBASEONE",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Haewon X Lily",group:"NMIXX",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Jeno X Jaemin",group:"NCT DREAM",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Wooyoung X San",group:"ATEEZ",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Taehyung X Jungkook",group:"BTS",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Winter X Karina",group:"aespa",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Yujin X Rei",group:"IVE",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Yunah X Minju",group:"ILLIT",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Suga X Jimin",group:"BTS",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Minho X Key",group:"SHINee",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Gyuvin X Ricky",group:"ZEROBASEONE",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Chuu X Yves",group:"LOONA",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Yeonjun X Soobin",group:"TXT",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Momo X Sana",group:"TWICE",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Sunghoon X Sunoo",group:"ENHYPEN",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Vernon X Seungkwan",group:"SEVENTEEN",rarity:"Soulmates"},
+  {pack:"Soulmates",idol:"Jennie X Lisa",group:"BLACKPINK",rarity:"Soulmates"}
 ];
 const grades=[["F",1],["E",1.1],["D",1.2],["C",1.3],["B",1.4],["A",1.5],["S",1.6],["X",1.8],["SS",1.9],["XX",2]];
 const recipes=[
