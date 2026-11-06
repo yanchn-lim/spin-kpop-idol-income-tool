@@ -66,7 +66,8 @@ const rarities=[
   {name:"Egg",rate:700,weightRange:[135,155]},
   {name:"Mirror",rate:605,weightRange:[125,145]},
   {name:"Angelic",rate:785,weightRange:[160,185]},
-  {name:"Soulmates",rate:800,weightRange:[165,190]}
+  {name:"Soulmates",rate:800,weightRange:[165,190]},
+  {name:"Costume",rate:825,weightRange:null}
 ];
 rarities.sort((a,b)=>(a.rate??Infinity)-(b.rate??Infinity));
 const packPool=[
@@ -1076,7 +1077,32 @@ const packPool=[
   {pack:"Soulmates",idol:"Momo X Sana",group:"TWICE",rarity:"Soulmates"},
   {pack:"Soulmates",idol:"Sunghoon X Sunoo",group:"ENHYPEN",rarity:"Soulmates"},
   {pack:"Soulmates",idol:"Vernon X Seungkwan",group:"SEVENTEEN",rarity:"Soulmates"},
-  {pack:"Soulmates",idol:"Jennie X Lisa",group:"BLACKPINK",rarity:"Soulmates"}
+  {pack:"Soulmates",idol:"Jennie X Lisa",group:"BLACKPINK",rarity:"Soulmates"},
+  {pack:"Costume",idol:"Costume Seulgi",group:"Red Velvet",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Felix",group:"Stray Kids",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume San",group:"ATEEZ",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Jihoon",group:"Unknown",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Sunoo",group:"ENHYPEN",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Wonhee",group:"ILLIT",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Yuqi",group:"(G)I-DLE",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Haechan",group:"NCT",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Ahyeon",group:"BABYMONSTER",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Sullyoon",group:"NMIXX",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Ryujin",group:"ITZY",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Haerin",group:"NewJeans",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Ricky",group:"ZEROBASEONE",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Rosé",group:"BLACKPINK",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Beomgyu",group:"TXT",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Anton",group:"RIIZE",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Wooyoung",group:"ATEEZ",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Winter",group:"aespa",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Mingyu",group:"SEVENTEEN",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Baekhyun",group:"EXO",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Taeyeon",group:"Girls' Generation",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Sana",group:"TWICE",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Taesan",group:"BOYNEXTDOOR",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Wonyoung",group:"IVE",rarity:"Costume"},
+  {pack:"Costume",idol:"Costume Kazuha",group:"LE SSERAFIM",rarity:"Costume"}
 ];
 const grades=[["F",1],["E",1.1],["D",1.2],["C",1.3],["B",1.4],["A",1.5],["S",1.6],["X",1.8],["SS",1.9],["XX",2]];
 const recipes=[
