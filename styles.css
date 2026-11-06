@@ -44,6 +44,8 @@ button,input,select,summary{font:inherit}
 .fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s2)}
 .total-fields{grid-template-columns:repeat(4,minmax(0,1fr))}
 .calc-actions,.total-results{margin-top:var(--s2)}
+.planner-inputs{min-width:0;margin:0;padding:0;border:0}
+.planner-step-state{margin:var(--s1) 0 var(--s2)}
 .recipe-mode-label{margin-bottom:var(--s1)}
 label.field{display:grid;gap:var(--s1);min-width:0;color:var(--muted);font-size:var(--text-sm);font-weight:700}
 input,select{width:100%;min-width:0;min-height:var(--target);padding:var(--s1);border:var(--border) solid var(--line);border-radius:var(--radius-sm);background:var(--card);color:var(--ink)}

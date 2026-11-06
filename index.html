@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Spin a KPOP Idol — Income & Fusion Tool</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261107-planner">
 </head>
 <body>
 <main class="wrap">
@@ -103,6 +103,39 @@
   </section>
 
   <section class="panel" id="fusions">
+    <form class="card" id="plannerForm" aria-labelledby="plannerHeading">
+      <h2 id="plannerHeading">Best reachable combination</h2>
+      <p class="muted">Choose the mutations already on your card and the mutations you can apply directly. Find the best multiplier and a crafting sequence under those rules.</p>
+      <fieldset class="planner-inputs" id="plannerInputs" aria-label="Crafting planner inputs">
+        <div class="toolbar">
+          <label class="field">Mutation slots<select id="plannerSlots"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></label>
+          <div class="modes"><label><input id="plannerRemoval" type="checkbox"> Allow removing individual mutations (assumed)</label></div>
+        </div>
+        <div class="grid">
+          <div>
+            <h3>Already on this card</h3>
+            <p class="muted">Leave empty to start with an unmutated card.</p>
+            <div class="chips" id="plannerStarting" role="group" aria-label="Starting card mutations"></div>
+            <div class="actions calc-actions"><button class="btn" id="plannerUseCard" type="button">Use calculator mutations</button><button class="btn" id="plannerClearStart" type="button">Clear starting card</button></div>
+          </div>
+          <div>
+            <h3>Available to apply repeatedly</h3>
+            <p class="muted">Select only types you can add directly. Each selected type is treated as an unlimited supply.</p>
+            <div class="chips" id="plannerSources" role="group" aria-label="Available direct mutation applications" aria-describedby="plannerRules"></div>
+            <div class="actions calc-actions"><button class="btn" id="plannerNormal" type="button">Normal sources</button><button class="btn" id="plannerFestive" type="button">Normal + festive</button><button class="btn" id="plannerClearSources" type="button">Clear sources</button></div>
+          </div>
+        </div>
+        <p class="muted" id="plannerRules">Rules: one copy of each mutation per card; fusion ingredients are consumed; every step must fit the selected slot limit. Direct sources can be applied again after consumption. Selecting crafted or event mutations as direct sources assumes that application is possible. The festive preset adds Ghostly and Hallow; their application rules remain unconfirmed. Only mutations with confirmed multipliers are listed. Quantities, application costs, and random outcomes are not modeled.</p>
+      </fieldset>
+      <div class="actions calc-actions"><button class="btn" id="plannerSolve" type="submit">Find best combination</button></div>
+      <p class="status" id="plannerStatus" role="status" aria-live="polite" aria-atomic="true">Starts with an empty card and normal direct sources. Select Find best combination to plan.</p>
+      <div id="plannerResult" hidden>
+        <div class="resultbox"><strong>Best under the selected rules</strong><div class="money" id="plannerMultiplier"></div><div id="plannerBest"></div></div>
+        <p class="status" id="plannerSummary"></p>
+        <h3>Crafting sequence</h3>
+        <ol id="plannerSteps"></ol>
+      </div>
+    </form>
     <div class="card">
       <div class="section-head">
         <div><h2>Your mutations</h2><p class="muted">Check what you own, then filter the recipes.</p></div>
@@ -154,6 +187,8 @@
   </section>
 </main>
 <script src="data.js?v=20261107-costume"></script>
+<script src="vendor/graphlib-4.0.7.min.js"></script>
 <script src="app.js?v=bbed8eb"></script>
+<script src="planner.js?v=20261107-planner"></script>
 </body>
 </html>
