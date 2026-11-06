@@ -22,7 +22,8 @@ const mutations=[
   {name:"Hollow",value:4.4,status:"confirmed",color:"#4b445c"},
   {name:"Starlight",value:5,status:"confirmed",color:"#f1c75b"},
   {name:"Ghostly",value:4,status:"confirmed",color:"#a9c6f5"},
-  {name:"Hallow",value:3.5,status:"confirmed",color:"#d9ac73"}
+  {name:"Hallow",value:3.5,status:"confirmed",color:"#d9ac73"},
+  {name:"Scarlet",value:5.5,status:"confirmed",color:"#e31b23"}
 ];
 const rarities=[
   {name:"Common",rate:0.75,weightRange:[5,27.5]},
@@ -1110,9 +1111,10 @@ const recipes=[
   [["Candy","Crimson"],"Velvet"],[["Abyssal","Corrupted"],"Glitched"],[["Candy","Iceborn"],"Cherished"],
   [["Radiant","Blazing","Corrupted"],"Eclipse"],[["Iceborn","Moonlit","Corrupted"],"Pixelated"],
   [["Radiant","Moonlit","Crimson"],"Blossom"],[["Abyssal","Blazing","Moonlit"],"Cosmic"],
-  [["Void","Crimson","Glitched"],"Hollow"],[["Moonlit","Blossom","Radiant"],"Starlight"]
+  [["Void","Crimson","Glitched"],"Hollow"],[["Moonlit","Blossom","Radiant"],"Starlight"],
+  [["Crimson","Hallow","Ghostly"],"Scarlet"]
 ];
 const combinations={
   normal:["Starlight","Hollow","Velvet","Crimson"],
-  festive:["Starlight","Hollow","Ghostly","Hallow"]
+  festive:["Scarlet","Starlight","Ghostly","Hallow"]
 };
