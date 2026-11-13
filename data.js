@@ -68,7 +68,9 @@ const rarities=[
   {name:"Mirror",rate:605,weightRange:[125,145]},
   {name:"Angelic",rate:785,weightRange:[160,185]},
   {name:"Soulmates",rate:800,weightRange:[165,190]},
-  {name:"Costume",rate:825,weightRange:null}
+  {name:"Costume",rate:825,weightRange:null},
+  {name:"Host",rate:850,weightRange:[175,200]},
+  {name:"Musician",rate:770,weightRange:[150,170]}
 ];
 rarities.sort((a,b)=>(a.rate??Infinity)-(b.rate??Infinity));
 const packPool=[
@@ -1103,7 +1105,42 @@ const packPool=[
   {pack:"Costume",idol:"Costume Sana",group:"TWICE",rarity:"Costume"},
   {pack:"Costume",idol:"Costume Taesan",group:"BOYNEXTDOOR",rarity:"Costume"},
   {pack:"Costume",idol:"Costume Wonyoung",group:"IVE",rarity:"Costume"},
-  {pack:"Costume",idol:"Costume Kazuha",group:"LE SSERAFIM",rarity:"Costume"}
+  {pack:"Costume",idol:"Costume Kazuha",group:"LE SSERAFIM",rarity:"Costume"},
+  {pack:"Host",idol:"Host Gyuvin",group:"ZEROBASEONE",rarity:"Host"},
+  {pack:"Host",idol:"Host Haerin",group:"NewJeans",rarity:"Host"},
+  {pack:"Host",idol:"Host Han Yujin",group:"ZEROBASEONE",rarity:"Host"},
+  {pack:"Host",idol:"Host Miyeon",group:"(G)I-DLE",rarity:"Host"},
+  {pack:"Host",idol:"Host Yeonjun",group:"TXT",rarity:"Host"},
+  {pack:"Host",idol:"Host Sullyoon",group:"NMIXX",rarity:"Host"},
+  {pack:"Host",idol:"Host Wonyoung",group:"IVE",rarity:"Host"},
+  {pack:"Host",idol:"Host A-na",group:"Hearts2Hearts",rarity:"Host"},
+  {pack:"Host",idol:"Host YoonA",group:"Girls' Generation",rarity:"Host"},
+  {pack:"Host",idol:"Host Karina",group:"aespa",rarity:"Host"},
+  {pack:"Host",idol:"Host Shinyu",group:"TWS",rarity:"Host"},
+  {pack:"Host",idol:"Host Irene",group:"Red Velvet",rarity:"Host"},
+  {pack:"Host",idol:"Host Yunho",group:"ATEEZ",rarity:"Host"},
+  {pack:"Host",idol:"Host Eunchae",group:"LE SSERAFIM",rarity:"Host"},
+  {pack:"Host",idol:"Host Jaemin",group:"NCT DREAM",rarity:"Host"},
+  {pack:"Musician",idol:"Musician Yujin",group:"IVE",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Yuqi",group:"(G)I-DLE",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Ian",group:"Hearts2Hearts",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Rose",group:"BLACKPINK",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Gyuvin",group:"ZEROBASEONE",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Sunghoon",group:"ENHYPEN",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Wonbin",group:"RIIZE",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Dahyun",group:"TWICE",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Bang Chan",group:"Stray Kids",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Minnie",group:"(G)I-DLE",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Minju",group:"ILLIT",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Carmen",group:"Hearts2Hearts",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Asa",group:"BABYMONSTER",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Yunjin",group:"LE SSERAFIM",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Wonyoung",group:"IVE",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Karina",group:"aespa",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Martin",group:"CORTIS",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Huening Kai",group:"TXT",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Winter",group:"aespa",rarity:"Musician"},
+  {pack:"Musician",idol:"Musician Anton",group:"RIIZE",rarity:"Musician"}
 ];
 const grades=[["F",1],["E",1.1],["D",1.2],["C",1.3],["B",1.4],["A",1.5],["S",1.6],["X",1.8],["SS",1.9],["XX",2]];
 const recipes=[
