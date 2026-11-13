@@ -68,7 +68,7 @@ const rarities=[
   {name:"Mirror",rate:605,weightRange:[125,145]},
   {name:"Angelic",rate:785,weightRange:[160,185]},
   {name:"Soulmates",rate:800,weightRange:[165,190]},
-  {name:"Costume",rate:825,weightRange:null},
+  {name:"Costume",rate:825,weightRange:[170,195]},
   {name:"Host",rate:850,weightRange:[175,200]},
   {name:"Musician",rate:770,weightRange:[150,170]}
 ];
